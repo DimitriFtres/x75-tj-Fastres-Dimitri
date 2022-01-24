@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyIdentityComponent } from './my-identity/my-identity.component';
 import { MyDescriptionComponent } from './my-description/my-description.component';
-import { InfoPageComponent } from './info-page/info-page.component';
+import { InfoPageComponent } from './info-module/info-page/info-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import {InfoModuleModule} from "./info-module/info-module.module";
 
