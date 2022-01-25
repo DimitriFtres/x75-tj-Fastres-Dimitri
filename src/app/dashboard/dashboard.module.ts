@@ -3,32 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterComponent } from './router/router.component';
 import { HomeComponent } from './home/home.component';
 import { MyDetailComponent } from './my-detail/my-detail.component';
-import {Router, RouterModule, Routes} from "@angular/router";
 
-
-let routes:Routes = [
-  {
-    path: "",
-    component: RouterComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path:"my-detail/:name/:firstname",
-        component: MyDetailComponent
-      }
-    ]
-
-  },
-
-];
 
 @NgModule({
   declarations: [
@@ -38,7 +13,6 @@ let routes:Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
   ]
 })
 export class DashboardModule { }
