@@ -8,12 +8,10 @@ const routes: Routes =[
   {
     path: 'infoPage',
     component: InfoPageComponent,
-    pathMatch: 'full'
   },
   {
     path: 'contactPage',
     component: ContactPageComponent,
-    pathMatch: 'full'
   },
   ]
 
@@ -25,4 +23,4 @@ const routes: Routes =[
   ],
   exports: [RouterModule]
 })
-export class InfoModuleModule { }
+export class InfoModuleModule {}

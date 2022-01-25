@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDescriptionComponent implements OnInit {
 
-  description: string;
+  description: string | undefined;
   constructor() { }
 
   ngOnInit(): void {

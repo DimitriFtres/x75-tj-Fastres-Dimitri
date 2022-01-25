@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-identity.component.scss']
 })
 export class MyIdentityComponent implements OnInit {
-  firstname: string;
-  lastname: string;
+  firstname: string | undefined;
+  lastname: string | undefined;
   constructor() { }
 
   ngOnInit(): void {
