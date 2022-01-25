@@ -8,10 +8,12 @@ const routes: Routes =[
   {
     path: 'infoPage',
     component: InfoPageComponent,
+    pathMatch: 'prefix'
   },
   {
     path: 'contactPage',
     component: ContactPageComponent,
+    pathMatch: 'prefix'
   },
   ]
 
