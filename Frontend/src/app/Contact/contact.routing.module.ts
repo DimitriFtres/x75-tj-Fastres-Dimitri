@@ -6,11 +6,15 @@ import {ContactHomeComponent} from "./component/contact-home/contact-home.compon
 let routes:Routes = [
   {
     path: "",
-    redirectTo: "home"
+    redirectTo: "home",
+    pathMatch: "full"
+
   },
   {
     path: "home",
-    component: ContactHomeComponent
+    component: ContactHomeComponent,
+    pathMatch: "full"
+
   }
 ];
 
@@ -18,7 +22,8 @@ let routes:Routes = [
   declarations: []
   ,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

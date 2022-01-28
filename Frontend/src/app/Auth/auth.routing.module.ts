@@ -5,12 +5,16 @@ import {AuthHomeComponent} from "./component/auth-home/auth-home.component";
 
 let routes:Routes = [
   {
-    path: "",
-    redirectTo: "home"
+    path: "auth",
+    redirectTo: "auth/home",
+    pathMatch: "full"
+
   },
   {
-    path: "home",
-    component: AuthHomeComponent
+    path: "auth/home",
+    component: AuthHomeComponent,
+    pathMatch: "full"
+
   }
 ];
 
@@ -18,7 +22,8 @@ let routes:Routes = [
   declarations: []
   ,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

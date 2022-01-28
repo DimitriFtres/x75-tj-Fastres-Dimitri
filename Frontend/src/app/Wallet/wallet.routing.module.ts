@@ -2,16 +2,19 @@ import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {WalletHomeComponent} from "./component/wallet-home/wallet-home.component";
-import {RouterComponent} from "../../../../MyFirstApp/src/app/dashboard/router/router.component";
 
 let routes:Routes = [
   {
     path: "",
-    redirectTo: "home"
+    redirectTo: "home",
+    pathMatch: "prefix"
+
   },
   {
     path: "home",
-    component: WalletHomeComponent
+    component: WalletHomeComponent,
+    pathMatch: "full"
+
   }
 ];
 
@@ -19,8 +22,7 @@ let routes:Routes = [
   declarations: []
   ,
   imports: [
-    CommonModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

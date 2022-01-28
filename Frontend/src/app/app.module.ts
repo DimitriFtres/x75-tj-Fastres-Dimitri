@@ -9,7 +9,7 @@ import {ContactHomeComponent} from "./Contact/component/contact-home/contact-hom
 import {OrgEmplHomeComponent} from "./org-empl/component/org-empl-home/org-empl-home.component";
 import {AuthHomeComponent} from "./Auth/component/auth-home/auth-home.component";
 import {WalletRoutingModule} from "./Wallet/wallet.routing.module";
-import {orgEmplRoutingModule} from "./org-empl/org-empl.routing.module";
+import {OrgEmplRoutingModule} from "./org-empl/org-empl.routing.module";
 import {DocumentsRoutingModule} from "./Documents/documents.routing.module";
 import {ContactRoutingModule} from "./Contact/contact.routing.module";
 import {AuthRoutingModule} from "./Auth/auth.routing.module";
@@ -29,7 +29,7 @@ import {AuthRoutingModule} from "./Auth/auth.routing.module";
     BrowserModule,
     AppRoutingModule,
     WalletRoutingModule,
-    orgEmplRoutingModule,
+    OrgEmplRoutingModule,
     DocumentsRoutingModule,
     ContactRoutingModule,
     AuthRoutingModule

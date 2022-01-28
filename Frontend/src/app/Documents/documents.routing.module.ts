@@ -7,11 +7,15 @@ import {RouterComponent} from "../../../../MyFirstApp/src/app/dashboard/router/r
 let routes:Routes = [
   {
     path: "",
-    redirectTo: "home"
+    redirectTo: "home",
+    pathMatch: "full"
+
   },
   {
     path: "home",
-    component: DocumentsHomeComponent
+    component: DocumentsHomeComponent,
+    pathMatch: "full"
+
   }
 ];
 
@@ -19,7 +23,8 @@ let routes:Routes = [
   declarations: []
   ,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule
