@@ -5,13 +5,13 @@ import {AuthHomeComponent} from "./component/auth-home/auth-home.component";
 
 let routes:Routes = [
   {
-    path: "auth",
-    redirectTo: "auth/home",
+    path: "",
+    redirectTo: "home",
     pathMatch: "full"
 
   },
   {
-    path: "auth/home",
+    path: "home",
     component: AuthHomeComponent,
     pathMatch: "full"
 

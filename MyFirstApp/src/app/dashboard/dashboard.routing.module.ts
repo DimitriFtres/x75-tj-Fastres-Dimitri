@@ -17,11 +17,13 @@ let routes:Routes = [
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        pathMatch: 'full'
       },
       {
         path:"my-detail/:name/:firstname",
-        component: MyDetailComponent
+        component: MyDetailComponent,
+        pathMatch: 'full'
       }
     ]
 
