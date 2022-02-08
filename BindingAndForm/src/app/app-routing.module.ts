@@ -6,7 +6,8 @@ import {SigninRoutingModule} from "./signin/signin.routing.module";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home"
+    redirectTo: "contact",
+    pathMatch:"full"
   },
   {
     path: "contact",
