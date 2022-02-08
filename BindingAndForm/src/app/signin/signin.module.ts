@@ -7,11 +7,13 @@ import {SigninRoutingModule} from "./signin.routing.module";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SigninComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SigninRoutingModule
+    SigninRoutingModule,
   ]
 })
 export class SigninModule { }

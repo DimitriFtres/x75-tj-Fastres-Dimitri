@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {ContactDetailRoutingModule} from "./contact-detail/contact-detail.routing.module";
 import {SigninRoutingModule} from "./signin/signin.routing.module";
+import {CommonModule} from "@angular/common";
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CommonModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

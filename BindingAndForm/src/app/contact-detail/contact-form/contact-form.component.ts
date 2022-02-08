@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Contact} from "../models/Contact";
+import {Contact} from "../models";
 
 @Component({
   selector: 'app-contact-form',
