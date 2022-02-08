@@ -1,0 +1,16 @@
+<p>contact-form works!</p>
+
+<form [formGroup]="formGroup">
+  <label>lastname</label> <br/>
+  <input [name]="'lastname'" formControlName="lastname"> <br/>
+  <label>firstname</label> <br/>
+  <input [name]="'firstname'" formControlName="firstname"> <br/>
+
+  <label>email</label> <br/>
+  <input [name]="'email'" formControlName="email"> <br/>
+
+  <label>firstname</label> <br/>
+  <input [name]="'phone'" formControlName="phone"> <br/>
+
+  <button type="submit" [disabled]="formGroup.invalid">Submit</button>
+</form>

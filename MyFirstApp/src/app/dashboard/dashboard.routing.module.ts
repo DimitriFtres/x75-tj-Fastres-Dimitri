@@ -5,6 +5,7 @@ import {MyDetailComponent} from "./my-detail/my-detail.component";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 
+
 let routes:Routes = [
   {
     path: "",
@@ -32,14 +33,14 @@ let routes:Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    RouterComponent,
-    HomeComponent,
-    MyDetailComponent
-  ],
+  declarations: [RouterComponent]
+  ,
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    RouterModule
+  ],
+  exports: [
     RouterModule
   ]
 })

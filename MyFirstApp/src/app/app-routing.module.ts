@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DashboardRoutingModule} from "./dashboard/dashboard.routing.module";
 
 const routes: Routes = [
   {
@@ -14,7 +13,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes),
+    RouterModule,
+  ],
+  exports: [RouterModule,]
 })
 export class AppRoutingModule { }
