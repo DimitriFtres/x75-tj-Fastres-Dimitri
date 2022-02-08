@@ -7,7 +7,8 @@ import {CommonModule} from "@angular/common";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home"
+    redirectTo: "contact",
+    pathMatch:"full"
   },
   {
     path: "contact",
