@@ -3,7 +3,7 @@
   <input type="email" [name]="'username'" [(ngModel)]="username" required min="5" max="50">
   <label>Password</label> <br/>
   <input type="password" [name]="'password'" [(ngModel)]="password" required min="5" max="50">
-  <button type="submit" (submit)="submit()">Submit</button>
+  <button type="submit" (click)="submit()">Submit</button>
 </form>
 {{error}}
 <p>signin works!</p>

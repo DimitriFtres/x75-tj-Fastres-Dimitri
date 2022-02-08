@@ -1,7 +1,6 @@
 import {RouterModule, Routes, ROUTES} from "@angular/router";
 import {SigninComponent} from "./signin/signin.component";
 import {NgModule} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 let routes: Routes = [
   {

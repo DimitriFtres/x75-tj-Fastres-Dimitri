@@ -1,6 +1,5 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
 import {ContactDetailLineComponent} from "./contact-detail-line/contact-detail-line.component";
 import {ContactDetailHomePageComponent} from "./contact-detail-home-page/contact-detail-home-page.component";
 import {BoutonComponent} from "./bouton/bouton.component";

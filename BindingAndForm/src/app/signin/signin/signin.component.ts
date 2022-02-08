@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Credential} from "../models/Index";
+import {Credential} from "@signin/models";
 
 @Component({
   selector: 'app-signin',
@@ -18,6 +17,7 @@ export class SigninComponent implements OnInit {
   constructor() { }
 
   submit() {
+    this.error = "";
     if(this.username.length < 5) this.error += "Username trop petit ";
     if(this.username.length > 50) this.error += "Username trop grand ";
     if(this.username == "") this.error += "Username vide ";
@@ -25,12 +25,16 @@ export class SigninComponent implements OnInit {
     if(this.password.length < 5) this.error += "password trop petit ";
     if(this.password.length > 50) this.error += "password trop grand ";
 
+    if(this.error.length > 0)
+    {
+      this.payload =
+        {
+          username: this.username,
+          password: this.password
+        };
+    }
 
-    this.payload =
-      {
-        username: this.username,
-        password: this.password
-      };
+    console.log('ce que payload vaut', this.payload);
   }
 
   ngOnInit(): void {
