@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Contact} from "../models";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Contact} from '../models';
 
 @Component({
   selector: 'app-contact-form',
@@ -17,13 +17,14 @@ export class ContactFormComponent implements OnInit {
     phone: new FormControl('', [Validators.required])
   });
 
-  constructor() { }
-
-  submit()
-  {
-    this.payload = this.formGroup.value as Contact;
-    console.log("Je submit", this.payload);
+  constructor() {
   }
+
+  submit(): void {
+    this.payload = this.formGroup.value as Contact;
+    console.log('Je submit', this.payload);
+  }
+
   ngOnInit(): void {
   }
 
