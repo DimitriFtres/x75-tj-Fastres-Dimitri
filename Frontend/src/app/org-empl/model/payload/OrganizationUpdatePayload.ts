@@ -1,4 +1,6 @@
-export interface OrganizationUpdatePayload
+import {Payload} from "@Common/Payload";
+
+export interface OrganizationUpdatePayload extends Payload
 {
   organization_id: number;
   name: String;

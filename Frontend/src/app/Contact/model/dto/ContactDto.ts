@@ -1,6 +1,7 @@
 import {Address} from "@org-empl/model/business/Index";
+import {Dto} from "@Common/Dto";
 
-export interface ContactDto
+export interface ContactDto extends Dto
 {
   contact_id: number;
   firstname: String;

@@ -5,29 +5,11 @@
     "baseUrl": "src",
     "paths": {
       "@Auth/*": ["app/Auth/*"],
-      "@Auth/model/business/*": ["app/Auth/model/business/*"],
-      "@Auth/model/dto/*": ["app/Auth/model/dto/*"],
-      "@Auth/model/payload/*": ["app/Auth/model/payload/*"],
-
       "@Contact/*": ["app/Contact/*"],
-      "@Contact/model/business/*": ["app/Contact/model/business/*"],
-      "@Contact/model/dto/*": ["app/Contact/model/dto/*"],
-      "@Contact/model/payload/*": ["app/Contact/model/payload/*"],
-
       "@Documents/*": ["app/Documents/*"],
-      "@Documents/model/business/*": ["app/Documents/model/business/*"],
-      "@Documents/model/dto/*": ["app/Documents/model/dto/*"],
-      "@Documents/model/payload/*": ["app/Documents/model/payload/*"],
-
       "@org-empl/*": ["app/org-empl/*"],
-      "@org-empl/model/business/*": ["app/org-empl/model/business/*"],
-      "@org-empl/model/dto/*": ["app/org-empl/model/dto/*"],
-      "@org-empl/model/payload/*": ["app/org-empl/model/payload/*"],
-
-      "@Wallet/*": ["app/Wallet/*"],
-      "@Wallet/model/business/*": ["app/Wallet/model/business/*"],
-      "@Wallet/model/dto/*": ["app/Wallet/model/dto/*"],
-      "@Wallet/model/payload/*": ["app/Wallet/model/payload/*"],
+      "@Common/*": ["app/Common/*"],
+      "@Wallet/*": ["app/Wallet/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

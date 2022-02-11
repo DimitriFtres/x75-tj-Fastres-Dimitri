@@ -1,6 +1,7 @@
 import {Account} from "@Auth/model/business/Index";
+import {Payload} from "@Common/Payload";
 
-export interface CredentialAddPayload
+export interface CredentialAddPayload extends Payload
 {
   username: String;
   password: String;

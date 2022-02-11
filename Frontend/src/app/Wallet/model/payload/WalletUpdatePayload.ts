@@ -1,6 +1,7 @@
 import {Employee, Organization} from "@org-empl/model/business/Index";
+import {Payload} from "@Common/Payload";
 
-export interface WalletUpdatePayload
+export interface WalletUpdatePayload extends Payload
 {
   wallet_id: number;
   name: String;

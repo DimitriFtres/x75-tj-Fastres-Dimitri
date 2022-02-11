@@ -1,6 +1,7 @@
 import {Employee} from "@org-empl/model/business/Index";
+import {Dto} from "@Common/Dto";
 
-export interface SalaryDto
+export interface SalaryDto extends Dto
 {
   salary_id: number;
   type: String;

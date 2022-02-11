@@ -1,7 +1,8 @@
 import {Employee, Organization} from "@org-empl/model/business/Index";
 import {Transaction} from "@Wallet/model/business/Index";
+import {Payload} from "@Common/Payload";
 
-export interface DocumentAddPayload
+export interface DocumentAddPayload extends Payload
 {
   name: String;
   description: String;

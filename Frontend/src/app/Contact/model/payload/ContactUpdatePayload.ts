@@ -1,6 +1,7 @@
 import {Address} from "@org-empl/model/business/Index";
+import {Payload} from "@Common/Payload";
 
-export interface ContactUpdatePayload
+export interface ContactUpdatePayload extends Payload
 {
   contact_id: number;
   firstname: String;
