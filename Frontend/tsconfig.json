@@ -4,12 +4,12 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@Auth/*": ["app/Auth/*"],
-      "@Contact/*": ["app/Contact/*"],
-      "@Documents/*": ["app/Documents/*"],
-      "@org-empl/*": ["app/org-empl/*"],
+      "@auth/*": ["app/security/auth/*"],
+      "@Contact/*": ["app/dashboard/modules/Contact/*"],
+      "@Documents/*": ["app/dashboard/modules/Documents/*"],
+      "@org-empl/*": ["app/dashboard/modules/org-empl/*"],
       "@Common/*": ["app/Common/*"],
-      "@Wallet/*": ["app/Wallet/*"]
+      "@Wallet/*": ["app/dashboard/modules/Wallet/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
