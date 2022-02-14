@@ -1,4 +1,4 @@
-import {Organization} from "./Index";
+import {Organization} from "./index";
 import {Account} from "../../../../../security/auth/model/business";
 
 export interface Employee

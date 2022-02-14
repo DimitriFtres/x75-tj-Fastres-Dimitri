@@ -1,4 +1,4 @@
-import {Employee, Organization} from "./Index";
+import {Employee, Organization} from "./index";
 export interface Address
 {
   address_id: number;

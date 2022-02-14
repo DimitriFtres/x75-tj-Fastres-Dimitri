@@ -1,9 +1,9 @@
 import {Employee, Organization} from "../../../org-empl/model/business";
-import {Transaction} from "../../../Wallet/model/business";
+import {Transaction} from "../../../wallet/model/business";
+import {Payload} from "@Common/Payload";
 
-export interface Document
+export interface DocumentAddPayload extends Payload
 {
-  document_id: number;
   name: String;
   description: String;
   free_access: boolean;

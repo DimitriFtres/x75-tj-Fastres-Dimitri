@@ -33,8 +33,6 @@ let routes:Routes = [
 ];
 
 @NgModule({
-  declarations: [RouterComponent]
-  ,
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
