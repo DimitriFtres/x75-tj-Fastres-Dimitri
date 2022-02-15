@@ -17,17 +17,20 @@ import {AuthRoutingModule} from "./security/auth/auth.routing.module";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DocumentsHomeComponent,
-    ContactHomeComponent,
-    AuthHomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        DocumentsHomeComponent,
+        ContactHomeComponent,
+        AuthHomeComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule
+    ],
+    providers: [],
+    exports: [
+        ContactHomeComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
