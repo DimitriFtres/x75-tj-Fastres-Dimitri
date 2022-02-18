@@ -1,11 +1,11 @@
-<form [formGroup]="formGoup">
+<form [formGroup]="formGroup" (submit)="submit()">
   <label>Nom :</label>
-  <input [name]="'name'" formControlName="name">
+  <input name="name" formControlName="name">
   <label>Prénom :</label>
-  <input [name]="'firstname'" formControlName="firstname">
-  <label>Prénom :</label>
-  <input [name]="'firstname'" formControlName="firstname">
-  <label>Prénom :</label>
-  <input [name]="'firstname'" formControlName="firstname">
-
+  <input name="firstname" formControlName="firstname">
+  <label>Adresse :</label>
+  <input name="address" formControlName="address">
+  <label>Email :</label>
+  <input name="email" formControlName="email">
+  <button type="submit" [disabled]="formGroup.invalid" >Soumettre</button>
 </form>

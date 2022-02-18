@@ -5,6 +5,7 @@ import { RouterComponent } from './router/router.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ContactRoutingModule} from "./contact.routing.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -15,9 +16,10 @@ import {ContactRoutingModule} from "./contact.routing.module";
     ContactListComponent,
     ContactFormComponent
   ],
-  imports: [
-    CommonModule,
-    ContactRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        ContactRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class ContactModule { }

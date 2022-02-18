@@ -5,11 +5,11 @@
     "baseUrl": "src",
     "paths": {
       "@auth/*": ["app/security/auth/*"],
-      "@contact/*": ["app/dashboard/modules/Contact/*"],
-      "@documents/*": ["app/dashboard/modules/Documents/*"],
+      "@contact/*": ["app/dashboard/modules/contact/*"],
+      "@documents/*": ["app/dashboard/modules/documents/*"],
       "@org-empl/*": ["app/dashboard/modules/org-empl/*"],
       "@shared/*": ["app/shared/*"],
-      "@wallet/*": ["app/dashboard/modules/Wallet/*"]
+      "@wallet/*": ["app/dashboard/modules/wallet/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

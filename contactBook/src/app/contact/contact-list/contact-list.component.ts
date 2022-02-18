@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ContactService} from "../service/contact.service";
+import {Contact} from "../model/Contact";
 
 @Component({
   selector: 'app-contact-list',
@@ -6,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent implements OnInit {
+    contactServices!: Contact[];
 
 
-  constructor() { }
+  constructor(public contactService: ContactService) { }
 
   ngOnInit(): void {
+    this.contactService.service$.subscribe((contacts: Contact[]) => {
+      this.contactServices = contacts;
+    });
   }
 
 }
