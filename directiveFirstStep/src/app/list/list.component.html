@@ -1,0 +1,13 @@
+<table>
+  <tr *ngFor="let contact of personService.service$ | async" appLine="#000000">
+    <td appMaj="{{contact.lastname}}"></td>
+    <td appMaj="{{contact.name}}"></td>
+    <td [ngSwitch]="contact.gender">
+      <fa-icon [icon]="male" *ngSwitchCase="'M'"></fa-icon>
+      <fa-icon [icon]="female" *ngSwitchCase="'F'"></fa-icon>
+      <fa-icon [icon]="other" *ngSwitchCase="'X'"></fa-icon>
+      {{contact.gender}}</td>
+    <td [appBirth]="contact.birth">{{contact.birth}}</td>
+  </tr>
+</table>
+

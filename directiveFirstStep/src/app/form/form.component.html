@@ -1,0 +1,17 @@
+<form [formGroup]="formGroup" (submit)="submit()">
+  <label>lastname</label> <br/>
+  <input name="lastname" formControlName="lastname"> <br/>
+  <label>firstname</label> <br/>
+  <input name="name" formControlName="name"> <br/>
+
+  <label>gender</label> <br/>
+  <select name="gender" formControlName="gender">
+    <option value="{{gender}}" *ngFor="let gender of genders">{{gender}}</option>
+  </select>
+
+  <label>birthday</label> <br/>
+  <input name="birth" formControlName="birth" type="date"> <br/>
+
+  <button type="submit" [disabled]="formGroup.invalid">Submit</button>
+</form>
+<app-list></app-list>
