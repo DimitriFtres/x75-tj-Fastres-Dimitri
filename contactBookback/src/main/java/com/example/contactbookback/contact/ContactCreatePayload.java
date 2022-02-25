@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountUpdatePayload {
-    private int id;
+public class ContactCreatePayload {
     @NotNull
     private String firstname;
     @NotNull

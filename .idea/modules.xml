@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MyFirstApp.iml" filepath="$PROJECT_DIR$/.idea/MyFirstApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/directiveFirstStepback/directiveFirstStepback.iml" filepath="$PROJECT_DIR$/directiveFirstStepback/directiveFirstStepback.iml" />
     </modules>
   </component>
 </project>

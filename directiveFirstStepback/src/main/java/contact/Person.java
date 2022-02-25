@@ -1,57 +1,61 @@
-package com.example.contactbookback.contact;
+package contact;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.sql.Date;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @NotNull
-    private String firstname;
+    private String lastname;
     @NotNull
     private String name;
     @NotNull
-    private String adress;
+    private String gender;
     @NotNull
-    private String email;
+    private Date birth;
 
 
-    public Account(AccountUpdatePayload account) {
+    public Person(PersonUpdatePayload account) {
         this.id = account.getId();
-        this.firstname = account.getFirstname();
+        this.lastname = account.getLastname();
         this.name = account.getName();
-        this.adress = account.getAdress();
-        this.email = account.getEmail();
+        this.gender = account.getGender();
+        this.birth = account.getBirth();
     }
 
     public static class Builder
     {
         private int id;
         @NotNull
-        private String firstname;
+        private String lastname;
         @NotNull
         private String name;
         @NotNull
-        private String adress;
+        private String gender;
         @NotNull
-        private String email;
+        private Date birth;
 
         public Builder setAccount_id(int id) {
             this.id = id;
             return this;
         }
 
-        public Builder setFirstname(String firstname) {
-            this.firstname = firstname;
+        public Builder setLastname(String lastname) {
+            this.lastname = lastname;
             return this;
         }
 
@@ -60,19 +64,19 @@ public class Account {
             return this;
         }
 
-        public Builder setAdress(String adress) {
-            this.adress = adress;
+        public Builder setGender(String gender) {
+            this.gender = gender;
             return this;
         }
 
-        public Builder setEmail(String email) {
-            this.email = email;
+        public Builder setBirth(Date birth) {
+            this.birth = birth;
             return this;
         }
 
-        public Account build()
+        public Person build()
         {
-            return new Account(id, firstname, name, adress, email);
+            return new Person(id, lastname, name, gender, birth);
         }
 
     }
