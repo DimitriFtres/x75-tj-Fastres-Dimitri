@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PayloadInterface} from "../common/PayloadInterface";
+import {PayloadInterface} from "@shared/model/payload/payload.interface";
 
 @Injectable({
   providedIn: 'root'
