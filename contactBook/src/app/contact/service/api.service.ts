@@ -3,9 +3,7 @@ import {HttpService} from "./http.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {PayloadInterface} from "../common/PayloadInterface";
-
-class ApiResponse {
-}
+import {ApiResponse} from "../common/ApiResponse";
 
 @Injectable({
   providedIn: 'root'

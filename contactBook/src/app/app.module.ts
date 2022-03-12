@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import { AddressToStringPipe } from './contact/pipe/address-to-string.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddressToStringPipe
   ],
   imports: [
     BrowserModule,
