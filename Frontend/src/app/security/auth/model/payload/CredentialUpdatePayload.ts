@@ -1,4 +1,5 @@
 import {Account} from "../business";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface CredentialUpdatePayload extends Payload

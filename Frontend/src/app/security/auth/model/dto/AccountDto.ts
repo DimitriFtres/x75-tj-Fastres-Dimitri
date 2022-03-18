@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface AccountDto extends Dto

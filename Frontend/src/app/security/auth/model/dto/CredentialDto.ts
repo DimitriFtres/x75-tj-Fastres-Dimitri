@@ -1,4 +1,5 @@
 import {Account} from "../business";
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface CredentialDto extends Dto

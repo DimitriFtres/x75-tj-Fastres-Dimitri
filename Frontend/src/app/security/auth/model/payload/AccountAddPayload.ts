@@ -1,3 +1,4 @@
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface AccountAddPayload extends Payload

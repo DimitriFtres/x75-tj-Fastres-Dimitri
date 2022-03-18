@@ -13,6 +13,8 @@ import {OrgEmplRoutingModule} from "./dashboard/modules/org-empl/org-empl.routin
 import {DocumentsRoutingModule} from "./dashboard/modules/documents/documents.routing.module";
 import {ContactRoutingModule} from "./dashboard/modules/contact/contact.routing.module";
 import {AuthRoutingModule} from "./security/auth/auth.routing.module";
+import { HeaderComponent } from './shared/header/header/header.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -22,10 +24,12 @@ import {AuthRoutingModule} from "./security/auth/auth.routing.module";
         DocumentsHomeComponent,
         ContactHomeComponent,
         AuthHomeComponent,
+        HeaderComponent,
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
     ],
     providers: [],
     exports: [
