@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {map, switchAll, switchMap} from "rxjs/operators";
-import * as http from "http";
 import {ApiService} from "@shared/model/apiService/api.service";
 import {HttpService} from "@shared/model/httpService/http.service";
 import {Account, AccountUpdatePayload} from "@auth/model";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AuthService extends ApiService{
   }
 
   getList(): Observable<Account[]> {
-    return this.get('contacts')
+    return this.get('account')
       .pipe(
         map((response) => {
           if(response.result){
@@ -29,8 +29,23 @@ export class AuthService extends ApiService{
       );
   }
 
-  getDetail(contact_id: string): Observable<Account> {
-    return this.get(`contact/${contact_id}`)
+  // getDetail(account_id: string): Observable<Account> {
+  //   return this.get(`account/${account_id}`)
+  //     .pipe(
+  //       map((response) => {
+  //         return response.data as Account
+  //       })
+  //     );
+  // }
+
+  getDetail(username: string, password: string): Observable<Account> {
+    let option = {
+      headers: {
+        "username" : username,
+        "password" : password
+      }
+    }
+    return this.getHeader(`account/`, option)
       .pipe(
         map((response) => {
           return response.data as Account
@@ -39,7 +54,7 @@ export class AuthService extends ApiService{
   }
 
   Create(payload:  AccountUpdatePayload): Observable<Account[]> {
-    return this.post('contact', payload)
+    return this.post('account', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -53,7 +68,7 @@ export class AuthService extends ApiService{
   }
 
   update(payload: AccountUpdatePayload): Observable<Account[]> {
-    return this.put('contact', payload)
+    return this.put('account', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){

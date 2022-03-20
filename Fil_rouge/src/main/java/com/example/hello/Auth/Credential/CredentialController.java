@@ -26,6 +26,11 @@ public class CredentialController {
     public ApiResponse detail(@PathVariable int id) {
         return new ApiResponse(true, credentialRepository.findById(id), BASE_CODE + "detail.success");
     }
+//TODO
+//    @GetMapping("/detail")
+//    public ApiResponse detail(@header username, @Header password) {
+//        return new ApiResponse(true, credentialRepository.findBycombo username et password, BASE_CODE + "detail.success")
+//    }
 
     @PostMapping("/create")
     public ApiResponse create(@RequestBody CredentialCreatePayload payload) {

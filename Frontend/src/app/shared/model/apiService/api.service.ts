@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ApiResponse} from "../apiResponse/ApiResponse";
 import {PayloadInterface} from "@shared/model/payload/payload.interface";
 import {map} from "rxjs/operators";
+import {JsonObject} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class ApiService {
         map(response => response as ApiResponse)
       );
   }
+
+  getHeader(partUrl: string, option: JsonObject){
+    return this.http.get(`${this.baseUrl}${partUrl}`)
+      .pipe(
+        map(response => response as ApiResponse)
+      );
+  }
+
   put(partUrl: String, payload:PayloadInterface):Observable<ApiResponse>{
     return this.http.put(`${this.baseUrl}${partUrl}`,payload)
       .pipe(

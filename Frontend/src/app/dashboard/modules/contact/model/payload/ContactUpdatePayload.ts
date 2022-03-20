@@ -1,4 +1,5 @@
 import {Address} from "../../../org-empl/model/business";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface ContactUpdatePayload extends Payload
