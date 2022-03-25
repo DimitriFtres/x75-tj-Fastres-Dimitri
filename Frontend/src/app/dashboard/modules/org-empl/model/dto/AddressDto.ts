@@ -1,4 +1,5 @@
 import {Employee, Organization} from "../business";
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface AddressDto extends Dto

@@ -1,0 +1,37 @@
+<h1>Address</h1>
+<table>
+  <tr *ngFor="let address of addresses">
+    <td>{{address.country}}</td>
+    <td>{{address.town}}</td>
+    <td>{{address.road}}</td>
+    <td>{{address.number}}</td>
+    <td>{{address.box}}</td>
+    <td>{{address.cp}}</td>
+    <td>{{address.employee}}</td>
+    <td>{{address.organization}}</td>
+    <td>{{address.type}}</td>
+    <button class="btn btn-danger" (click)="deleteClick(address)">Supprimer</button>
+  </tr>
+</table>
+<h1>Organization</h1>
+<table>
+  <tr *ngFor="let organization of organizations">
+    <td>{{organization.name}}</td>
+    <td>{{organization.description}}</td>
+    <td>{{organization.actif}}</td>
+    <button class="btn btn-danger" (click)="deleteClickOrganization(organization)">Supprimer</button>
+  </tr>
+</table>
+<h1>Employees</h1>
+<table>
+  <tr *ngFor="let employee of employees">
+    <td>{{employee.role}}</td>
+    <td>{{employee.actif}}</td>
+    <td>{{employee.account}}</td>
+    <td>{{employee.organization.name}}</td>
+    <td>{{employee.organization.description}}</td>
+    <td>{{employee.organization.actif}}</td>
+    <button class="btn btn-danger" (click)="deleteClickEmployee(employee)">Supprimer</button>
+  </tr>
+</table>
+

@@ -10,8 +10,14 @@ import {AuthHomeComponent} from "@auth/component";
 import { HeaderComponent } from '@shared/header/header/header.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-import { ListComponent } from './dashboard/modules/contact/component/list/list.component';
-import { AddComponent } from './dashboard/modules/contact/component/add/add.component';
+import { ListContactComponent } from '@contact/component/list/list-contact.component';
+import { AddContactComponent } from '@contact/component/add/add-contact.component';
+import {ListDocumentComponent} from "@documents/component/list/list-document.component";
+import {AddDocumentComponent} from "@documents/component/add/add-document.component";
+import { SubHeaderComponent } from './shared/sub-header/sub-header.component';
+import {AddOrgEmplComponent} from "@org-empl/component/add/add-org-empl.component";
+import {ListOrgEmplComponent} from "@org-empl/component/list/list-org-empl.component";
+import {OrgEmplHomeComponent} from "@org-empl/component";
 
 
 
@@ -22,8 +28,14 @@ import { AddComponent } from './dashboard/modules/contact/component/add/add.comp
         ContactHomeComponent,
         AuthHomeComponent,
         HeaderComponent,
-        ListComponent,
-        AddComponent,
+        ListContactComponent,
+        AddContactComponent,
+        ListDocumentComponent,
+        AddDocumentComponent,
+        SubHeaderComponent,
+        AddOrgEmplComponent,
+        ListOrgEmplComponent,
+        OrgEmplHomeComponent
     ],
     imports: [
         BrowserModule,
@@ -32,9 +44,11 @@ import { AddComponent } from './dashboard/modules/contact/component/add/add.comp
         HttpClientModule,
     ],
     providers: [],
-    exports: [
-        ContactHomeComponent
-    ],
+  exports: [
+    ContactHomeComponent,
+    ListOrgEmplComponent,
+    AddOrgEmplComponent
+  ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

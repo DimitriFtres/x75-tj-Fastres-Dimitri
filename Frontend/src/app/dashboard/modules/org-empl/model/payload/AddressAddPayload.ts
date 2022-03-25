@@ -1,4 +1,5 @@
 import {Employee, Organization} from "../business";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface AddressAddPayload extends Payload

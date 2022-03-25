@@ -1,5 +1,6 @@
 import {Organization} from "../business";
-import {Account} from "../../../../../security/auth/model/business";
+import {Account} from "@auth/model";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface EmployeeUpdatePayload extends Payload

@@ -1,0 +1,77 @@
+<form method="POST" [formGroup]="formAddress" (submit)="submit(formAddress)" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="country">country : </label>
+    <input type="text" id="country" [name]="'country'" formControlName="country">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="town">town : </label>
+    <input type="text" id="town" [name]="'town'" formControlName="town">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="road">road : </label>
+    <input type="text" id="road" [name]="'road'" formControlName="road">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="number">number : </label>
+    <input type="text" id="number" [name]="'number'" formControlName="number">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="box">box : </label>
+    <input type="text" id="box" [name]="'box'" formControlName="box">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="cp">cp : </label>
+    <input type="text" id="cp" [name]="'cp'" formControlName="cp">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="employee">employee : </label>
+    <input type="text" id="employee" [name]="'employee'" formControlName="employee">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="organization">organization : </label>
+    <input type="text" id="organization" [name]="'organization'" formControlName="organization">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="type">type : </label>
+    <input type="text" id="type" [name]="'type'" formControlName="type">
+  </div>
+  <button [disabled]="formAddress.invalid">Ajouter contact</button>
+</form>
+
+<form method="POST" [formGroup]="formEmployee" (submit)="submit(formEmployee)" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="name">name : </label>
+    <input type="text" id="name" [name]="'name'" formControlName="name">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="description">description : </label>
+    <input type="text" id="description" [name]="'description'" formControlName="description">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="actif">actif : </label>
+    <input type="text" id="actif" [name]="'actif'" formControlName="actif">
+  </div>
+
+  <button [disabled]="formEmployee.invalid">Ajouter contact</button>
+</form>
+
+<form method="POST" [formGroup]="formOrganization" (submit)="submit(formOrganization)" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="role">role : </label>
+    <input type="text" id="role" [name]="'role'" formControlName="role">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="actif2">actif : </label>
+    <input type="text" id="actif2" [name]="'actif'" formControlName="actif">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="account">account : </label>
+    <input type="text" id="account" [name]="'account'" formControlName="account">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="organization2">organization : </label>
+    <input type="text" id="organization2" [name]="'organization'" formControlName="organization">
+  </div>
+
+  <button [disabled]="formEmployee.invalid">Ajouter contact</button>
+</form>

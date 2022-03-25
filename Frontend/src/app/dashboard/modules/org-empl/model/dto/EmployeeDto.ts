@@ -1,5 +1,6 @@
 import {Organization} from "../business";
-import {Account} from "../../../../../security/auth/model/business";
+import {Account} from "@auth/model";
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface EmployeeDto extends Dto
