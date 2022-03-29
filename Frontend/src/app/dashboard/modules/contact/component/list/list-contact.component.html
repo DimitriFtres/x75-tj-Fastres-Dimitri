@@ -1,0 +1,13 @@
+<table>
+  <tr *ngFor="let contact of contacts">
+    <td>{{contact.firstname}}</td>
+    <td>{{contact.lastname}}</td>
+    <td>{{contact.email}}</td>
+    <td>{{contact.addresses}}</td>
+    <td>{{contact.phone}}</td>
+    <ng-container *ngFor="let address of contact.addresses">
+      <td>{{contact.addresses}}</td>
+    </ng-container>
+    <button class="btn btn-danger" (click)="deleteClick(contact)">Supprimer</button>
+  </tr>
+</table>

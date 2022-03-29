@@ -1,0 +1,14 @@
+<table>
+  <tr *ngFor="let document of documents">
+    <td>{{document.name}}</td>
+    <td>{{document.description}}</td>
+    <td>{{document.free_access}}</td>
+    <td>{{document.path}}</td>
+    <td>{{document.type}}</td>
+    <td>{{document.employee}}</td>
+    <td>{{document.organization.name}}</td>
+    <td>{{document.transaction.amount}}</td>
+    <button class="btn btn-danger" (click)="deleteClick(document)">Supprimer</button>
+  </tr>
+</table>
+
