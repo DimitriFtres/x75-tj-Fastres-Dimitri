@@ -1,6 +1,8 @@
 package com.example.hello.Org_Empl.Address;
 
+import com.example.hello.Contact.Contact.Contact;
 import com.example.hello.Org_Empl.Employee.Employee;
+import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
 import com.example.hello.Org_Empl.Organization.Organization;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,11 +36,71 @@ public class Address {
     @NotNull
     private String country;
 
-    @ManyToOne
-    @JoinColumn(name = "organization_id", nullable = true, referencedColumnName = "organization_id")
-    private Organization organization;
+    public Address(AddressUpdatePayload address) {
+        this.address_id = address.getAddress_id();
+        this.type = address.getType();
+        this.road = address.getRoad();
+        this.number = address.getNumber();
+        this.box = address.getBox();
+        this.cp = address.getCp();
+        this.town = address.getTown();
+        this.country = address.getCountry();
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = true, referencedColumnName = "employee_id")
-    private Employee employee;
+    public static class Builder
+    {
+        private int address_id;
+        private String type;
+        private String road;
+        private String number;
+        private String box;
+        private String cp;
+        private String town;
+        private String country;
+
+        public Builder setAddress_id(int address_id) {
+            this.address_id = address_id;
+            return this;
+        }
+
+        public Builder setType(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder setRoad(String road) {
+            this.road = road;
+            return this;
+        }
+
+        public Builder setNumber(String number) {
+            this.number = number;
+            return this;
+        }
+
+        public Builder setBox(String box) {
+            this.box = box;
+            return this;
+        }
+
+        public Builder setCp(String cp) {
+            this.cp = cp;
+            return this;
+        }
+
+        public Builder setTown(String town) {
+            this.town = town;
+            return this;
+        }
+
+        public Builder setCountry(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public Address build()
+        {
+            return new Address(address_id, type, road, number, box, cp, town, country);
+        }
+    }
 }

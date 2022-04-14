@@ -1,4 +1,5 @@
 import {Employee, Organization} from "./index";
+import {Contact} from "@contact/model";
 export interface Address
 {
   address_id: number;
@@ -9,6 +10,4 @@ export interface Address
   cp: String;
   town: String;
   country: String;
-  organization: Organization;
-  employee: Employee;
 }

@@ -9,15 +9,17 @@ import {AuthHomeComponent} from "@auth/component";
 
 import { HeaderComponent } from '@shared/header/header/header.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ListContactComponent } from '@contact/component/list/list-contact.component';
 import { AddContactComponent } from '@contact/component/add/add-contact.component';
 import {ListDocumentComponent} from "@documents/component/list/list-document.component";
 import {AddDocumentComponent} from "@documents/component/add/add-document.component";
-import { SubHeaderComponent } from './shared/sub-header/sub-header.component';
 import {AddOrgEmplComponent} from "@org-empl/component/add/add-org-empl.component";
 import {ListOrgEmplComponent} from "@org-empl/component/list/list-org-empl.component";
 import {OrgEmplHomeComponent} from "@org-empl/component";
+import {HttpInterceptorService} from "@shared/service";
+import { DeleteButtonComponent } from './shared/buttons/delete-button/delete-button.component';
+import { SubHeaderComponent } from './shared/header/sub-header/sub-header.component';
 
 
 
@@ -32,10 +34,11 @@ import {OrgEmplHomeComponent} from "@org-empl/component";
         AddContactComponent,
         ListDocumentComponent,
         AddDocumentComponent,
-        SubHeaderComponent,
         AddOrgEmplComponent,
         ListOrgEmplComponent,
-        OrgEmplHomeComponent
+        OrgEmplHomeComponent,
+        DeleteButtonComponent,
+        SubHeaderComponent
     ],
     imports: [
         BrowserModule,
@@ -43,12 +46,18 @@ import {OrgEmplHomeComponent} from "@org-empl/component";
         ReactiveFormsModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: HttpInterceptorService,
+        multi: true,
+      }
+    ],
   exports: [
     ContactHomeComponent,
     ListOrgEmplComponent,
-    AddOrgEmplComponent
+    AddOrgEmplComponent,
   ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

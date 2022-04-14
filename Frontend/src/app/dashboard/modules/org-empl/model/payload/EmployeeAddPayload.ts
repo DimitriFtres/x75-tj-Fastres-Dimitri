@@ -1,4 +1,4 @@
-import {Organization} from "../business";
+import {Address, Organization} from "../business";
 import {Account} from "@auth/model";
 // @ts-ignore
 import {Payload} from "@Common/Payload";
@@ -10,4 +10,6 @@ export interface EmployeeAddPayload extends Payload
   actif: boolean;
   account: Account;
   organization: Organization;
+  address: Address;
+
 }

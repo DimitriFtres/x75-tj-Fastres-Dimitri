@@ -1,13 +1,27 @@
-<table>
-  <tr *ngFor="let contact of contacts">
-    <td>{{contact.firstname}}</td>
-    <td>{{contact.lastname}}</td>
-    <td>{{contact.email}}</td>
-    <td>{{contact.addresses}}</td>
-    <td>{{contact.phone}}</td>
-    <ng-container *ngFor="let address of contact.addresses">
-      <td>{{contact.addresses}}</td>
+<table class="table table-striped">
+  <thead>
+    <tr class="row h6">
+      <td class="col">Prénom</td>
+      <td class="col">Nom de famille</td>
+      <td class="col">Email</td>
+      <td class="col">Téléphone</td>
+      <td class="col">Adresse</td>
+      <td class="col"></td>
+      <td class="col"></td>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let contact of contactService.contacts$ | async">
+      <tr class="row" id="{{contact.contact_id}}">
+        <td class="col">{{contact.firstname}}</td>
+        <td class="col">{{contact.lastname}}</td>
+        <td class="col">{{contact.email}}</td>
+        <td class="col">{{contact.phone}}</td>
+        <td class="col">{{contact.address.address_id}}{{contact.address.road}} {{contact.address.number}}, {{contact.address.town}}
+          <br/>{{contact.address.cp}} {{contact.address.country}}</td>
+        <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(contact.contact_id)">Supprimer</button></td>
+        <td class="col"><button class="btn btn-primary bg-primary" (click)="modify(contact)">Modifier</button></td>
+      </tr>
     </ng-container>
-    <button class="btn btn-danger" (click)="deleteClick(contact)">Supprimer</button>
-  </tr>
+  </tbody>
 </table>

@@ -1,4 +1,4 @@
-import {PayloadInterface} from '@shared/model';
+import {PayloadInterface} from "@shared/model/payload/payload.interface";
 
 export interface RefreshPayload extends PayloadInterface {
   refresh: string;

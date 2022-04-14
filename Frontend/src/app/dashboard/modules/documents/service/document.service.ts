@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {HttpService} from "@shared/model/httpService/http.service";
 import {map, switchMap} from "rxjs/operators";
-import {ApiService} from "@shared/model/apiService/api.service";
 import {DocumentAddPayload, DocumentUpdatePayload} from "@documents/model";
 import {Document} from "@documents/model";
+import {ApiService, HttpService} from "@shared/service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class DocumentService extends ApiService {
 
   getList(): Observable<Document[]> {
     const headers = new Headers();
-    return this.get('document/list')
+    return this.http.get(this.baseUrl+'document/list')
       .pipe(
         map((response) => {
           if(response.result){
@@ -30,7 +29,7 @@ export class DocumentService extends ApiService {
   }
 
   getDetail(document_id: string): Observable<Document> {
-    return this.get(`document/${document_id}`)
+    return this.http.get(this.baseUrl+`document/${document_id}`)
       .pipe(
         map((response) => {
           return response.data as Document
@@ -39,7 +38,7 @@ export class DocumentService extends ApiService {
   }
 
   deleteDocument(document_id: string): Observable<Document> {
-    return this.delete(`document/delete/${document_id}`)
+    return this.http.delete(this.baseUrl+`document/delete/${document_id}`)
       .pipe(
         map((response) => {
           return response.data as Document
@@ -48,7 +47,7 @@ export class DocumentService extends ApiService {
   }
 
   create(payload: DocumentAddPayload): Observable<Document[]> {
-    return this.post('document/create', payload)
+    return this.http.post(this.baseUrl+'document/create', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -62,7 +61,7 @@ export class DocumentService extends ApiService {
   }
 
   update(payload: DocumentUpdatePayload): Observable<Document[]> {
-    return this.put('document', payload)
+    return this.http.put(this.baseUrl+'document', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){

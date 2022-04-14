@@ -15,5 +15,19 @@
     <label for="phone">Téléphone : </label>
     <input type="text" id="phone" [name]="'phone'" formControlName="phone">
   </div>
+  <div class="d-flex justify-content-between">
+    <span for="address">Adresses : </span>
+    <div>
+      <div id="addresses">
+        <select name="addressSelector" id="addressSelector" [name]="'address'" formControlName="address">
+          <ng-container *ngFor="let address of addressService.addresses$ | async">
+            <option value="{{address.address_id}}">{{address.road}} {{address.number}}, {{address.town}}
+              <br/>{{address.cp}} {{address.country}}</option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
   <button [disabled]="formContact.invalid">Ajouter contact</button>
 </form>
+

@@ -22,8 +22,9 @@ public class Contact {
     private String email;
     private String phone;
 
-    @OneToMany(targetEntity = Address.class)
-    private List<Address> addresses = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "adress_id", nullable = true, referencedColumnName = "address_id")
+    private Address address; 
 
     public Contact(ContactUpdatePayload contact) {
         this.contact_id = contact.getContact_id();
@@ -31,7 +32,7 @@ public class Contact {
         this.lastname = contact.getLastname();
         this.email = contact.getEmail();
         this.phone = contact.getPhone();
-        this.addresses = contact.getAddresses();
+        this.address = contact.getAddress();
     }
 
     public static class Builder
@@ -41,7 +42,7 @@ public class Contact {
         private String lastname;
         private String email;
         private String phone;
-        private List<Address> addresses = new ArrayList<>();
+        private Address address;
 
         public Builder setContact_id(int contact_id) {
             this.contact_id = contact_id;
@@ -68,14 +69,14 @@ public class Contact {
             return this;
         }
 
-        public Builder setAddresses(List<Address> addresses) {
-            this.addresses = addresses;
+        public Builder setAddress(Address address) {
+            this.address = address;
             return this;
         }
 
         public Contact build()
         {
-            return new Contact(contact_id, firstname, lastname, email, phone, addresses);
+            return new Contact(contact_id, firstname, lastname, email, phone, address);
         }
     }
 

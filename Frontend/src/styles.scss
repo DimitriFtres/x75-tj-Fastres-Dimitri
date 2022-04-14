@@ -8,7 +8,10 @@
   transform: translate(0, -100%);
 }
 .p-hover1{
-
+  position : absolute;
+  top: 100%;
+  left : 0;
+  transform: translate(0, -100%);
   &:hover{
 
     .hidden1{
@@ -16,6 +19,7 @@
       margin : 0 5px 0 5px;
       transition: all ease 0.5s;
       visibility: visible;
+
     }
   }
   .hidden1 {
@@ -26,6 +30,10 @@
   }
 }
 .p-hover2{
+  position : absolute;
+  top: 100%;
+  left : 0;
+  transform: translate(0, -200%);
   &:hover{
     .hidden2{
       width: 100%;
@@ -41,6 +49,10 @@
 
   }
 }.p-hover3{
+   position : absolute;
+   top: 100%;
+   left : 0;
+   transform: translate(0, -300%);
    &:hover{
      .hidden3{
        width: 100%;

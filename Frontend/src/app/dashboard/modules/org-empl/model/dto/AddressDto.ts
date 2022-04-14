@@ -12,6 +12,4 @@ export interface AddressDto extends Dto
   cp: String;
   town: String;
   country: String;
-  organization: Organization;
-  employee: Employee;
 }

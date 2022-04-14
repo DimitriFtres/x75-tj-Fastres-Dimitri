@@ -1,11 +1,14 @@
-import {Credential, CredentialDto} from '@security/model';
+import {Credential, CredentialDto} from "@auth/model";
 
 export class CredentialHelper{
   public static credentialFromDto(dto: CredentialDto): Credential {
     return {
-      id: dto.credential_id,
+      credential_id: dto.credential_id,
       username: dto.username,
-      isActif: dto.actif
+      password: dto.password,
+      email: dto.email,
+      actif: dto.actif,
+      account: dto.account
     }
   }
 }

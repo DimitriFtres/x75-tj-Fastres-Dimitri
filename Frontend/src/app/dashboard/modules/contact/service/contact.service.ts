@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {Contact, ContactAddPayload, ContactUpdatePayload} from "@contact/model";
 import {Account, AccountUpdatePayload} from "@auth/model";
-import {map, switchMap} from "rxjs/operators";
-import {HttpService} from "@shared/model/httpService/http.service";
-import {ApiService} from "@shared/model/apiService/api.service";
+import {map, switchMap, tap} from "rxjs/operators";
+import {ApiService, HttpService} from "@shared/service";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService extends ApiService{
+
+  contacts$: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
 
   constructor(public http: HttpService) {
     super(http);
@@ -17,7 +19,7 @@ export class ContactService extends ApiService{
 
   getList(): Observable<Contact[]> {
     const headers = new Headers();
-    return this.get('contact/list')
+    return this.http.get(this.baseUrl+'contact/list')
       .pipe(
         map((response) => {
           if(response.result){
@@ -25,12 +27,15 @@ export class ContactService extends ApiService{
           }else{
             return [];
           }
+        }),
+        tap((response: Contact[]) => {
+          this.contacts$.next(response);
         })
       );
   }
 
   getDetail(contact_id: string): Observable<Contact> {
-    return this.get(`contact/${contact_id}`)
+    return this.http.get(this.baseUrl+`contact/${contact_id}`)
       .pipe(
         map((response) => {
           return response.data as Contact
@@ -39,16 +44,26 @@ export class ContactService extends ApiService{
   }
 
   deleteContact(contact_id: string): Observable<Contact> {
-    return this.delete(`contact/delete/${contact_id}`)
+    return this.http.delete(this.baseUrl+`contact/delete/${contact_id}`)
       .pipe(
         map((response) => {
           return response.data as Contact
+        }),
+        tap((response: Contact) => {
+          this.contacts$.getValue().forEach((e, index) => {
+            if(e.contact_id.toString() == contact_id)
+            {
+              let value = this.contacts$.getValue();
+              value.splice(index, 1);
+              this.contacts$.next(value);
+            }
+          });
         })
       );
   }
 
   create(payload: ContactAddPayload): Observable<Contact[]> {
-    return this.post('contact/create', payload)
+    return this.http.post(this.baseUrl+'contact/create', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -56,13 +71,16 @@ export class ContactService extends ApiService{
           } else{
             return of([]);
           }
+        }),
+        tap((response: Contact[]) => {
+          this.contacts$.next(response);
         })
       );
 
   }
 
   update(payload: ContactUpdatePayload): Observable<Contact[]> {
-    return this.put('account', payload)
+    return this.http.put(this.baseUrl+'account', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -70,6 +88,9 @@ export class ContactService extends ApiService{
           } else{
             return of([]);
           }
+        }),
+        tap((response: Contact[]) => {
+          this.contacts$.next(response);
         })
       );
   }

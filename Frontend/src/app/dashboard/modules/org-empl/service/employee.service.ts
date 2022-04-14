@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpService} from "@shared/model/httpService/http.service";
 import {Observable, of} from "rxjs";
 import {Employee, EmployeeAddPayload, EmployeeUpdatePayload} from "@org-empl/model";
 import {map, switchMap} from "rxjs/operators";
-import {ApiService} from "@shared/model/apiService/api.service";
+import {ApiService, HttpService} from "@shared/service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class EmployeeService extends ApiService {
 
   getList(): Observable<Employee[]> {
     const headers = new Headers();
-    return this.get('employee/list')
+    return this.http.get(this.baseUrl+'employee/list')
       .pipe(
         map((response) => {
           if(response.result){
@@ -30,7 +29,7 @@ export class EmployeeService extends ApiService {
   }
 
   getDetail(employee_id: string): Observable<Employee> {
-    return this.get(`employee/${employee_id}`)
+    return this.http.get(this.baseUrl+`employee/${employee_id}`)
       .pipe(
         map((response) => {
           return response.data as Employee
@@ -39,7 +38,7 @@ export class EmployeeService extends ApiService {
   }
 
   deleteEmployee(employee_id: string): Observable<Employee> {
-    return this.delete(`employee/delete/${employee_id}`)
+    return this.http.delete(this.baseUrl+`employee/delete/${employee_id}`)
       .pipe(
         map((response) => {
           return response.data as Employee
@@ -48,7 +47,7 @@ export class EmployeeService extends ApiService {
   }
 
   create(payload: EmployeeAddPayload): Observable<Employee[]> {
-    return this.post('employee/create', payload)
+    return this.http.post(this.baseUrl+'employee/create', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -62,7 +61,7 @@ export class EmployeeService extends ApiService {
   }
 
   update(payload: EmployeeUpdatePayload): Observable<Employee[]> {
-    return this.put('employee', payload)
+    return this.http.put(this.baseUrl+'employee', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){

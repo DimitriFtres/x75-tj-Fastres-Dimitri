@@ -1,5 +1,6 @@
 // @ts-ignore
 import {Dto} from "@Common/Dto";
+import {Address} from "@org-empl/model";
 
 export interface OrganizationDto extends Dto
 {
@@ -7,4 +8,6 @@ export interface OrganizationDto extends Dto
   name: String;
   description: String;
   actif: boolean;
+  address: Address;
+
 }

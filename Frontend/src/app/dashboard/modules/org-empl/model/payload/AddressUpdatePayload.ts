@@ -12,6 +12,4 @@ export interface AddressUpdatePayload extends Payload
   cp: String;
   town: String;
   country: String;
-  organization: Organization;
-  employee: Employee;
 }

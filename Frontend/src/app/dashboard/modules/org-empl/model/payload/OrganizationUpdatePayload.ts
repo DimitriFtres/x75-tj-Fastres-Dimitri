@@ -1,5 +1,6 @@
 // @ts-ignore
 import {Payload} from "@Common/Payload";
+import {Address} from "@org-empl/model";
 
 export interface OrganizationUpdatePayload extends Payload
 {
@@ -7,4 +8,5 @@ export interface OrganizationUpdatePayload extends Payload
   name: String;
   description: String;
   actif: boolean;
+  address: Address;
 }

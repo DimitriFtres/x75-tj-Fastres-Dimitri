@@ -1,4 +1,4 @@
-import {Organization} from "./index";
+import {Address, Organization} from "./index";
 import {Account} from "../../../../../security/auth/model/business";
 
 export interface Employee
@@ -7,5 +7,6 @@ export interface Employee
   role: String;
   actif: boolean;
   account: Account;
+  address: Address;
   organization: Organization;
 }

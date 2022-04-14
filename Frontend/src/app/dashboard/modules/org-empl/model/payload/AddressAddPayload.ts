@@ -11,6 +11,4 @@ export interface AddressAddPayload extends Payload
   cp: String;
   town: String;
   country: String;
-  organization: Organization;
-  employee: Employee;
 }

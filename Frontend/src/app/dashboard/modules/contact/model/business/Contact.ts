@@ -7,5 +7,5 @@ export interface Contact
   lastname: String;
   email: String;
   phone: String;
-  addresses: Address[]
+  address: Address
 }

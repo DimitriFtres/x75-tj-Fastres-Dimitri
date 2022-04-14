@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthService} from '@security/service/auth.service';
 import {isNil} from 'lodash';
-import {RefreshPayload} from '@security/model/payload/refresh.payload';
 import {ApiResponse} from '@shared/model';
 import {map} from 'rxjs/operators';
+import {AuthService} from "../service/auth.service";
+import {RefreshPayload} from "../model";
 
 @Injectable({
   providedIn: 'root'

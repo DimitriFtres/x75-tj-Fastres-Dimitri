@@ -13,10 +13,6 @@ public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
 
-
-
-
-
     @GetMapping("/list")
     public ApiResponse list(){
         return new ApiResponse(true,employeeRepository.findAll(),BASE_CODE + "list.sucess");
@@ -37,6 +33,7 @@ public class EmployeeController {
                         .setRole(payload.getRole())
                         .setAccount(payload.getAccount())
                         .setActif(payload.isActif())
+                        .setAddress(payload.getAddress())
                         .setOrganization(payload.getOrganization()).build();
                 Employee newEmployee = employeeRepository.save(employee);
                 return new ApiResponse(true, newEmployee, BASE_CODE + "create.success");

@@ -33,7 +33,7 @@ public class ContactController {
 //                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
 //                }
                 Contact contact = new Contact.Builder()
-                        .setAddresses(payload.getAddresses())
+                        .setAddress(payload.getAddress())
                         .setFirstname(payload.getFirstname())
                         .setLastname(payload.getLastname())
                         .setPhone(payload.getPhone())
