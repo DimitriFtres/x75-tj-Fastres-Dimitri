@@ -1,4 +1,5 @@
 import {Wallet} from "../business/Wallet";
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface TransactionDto extends Dto

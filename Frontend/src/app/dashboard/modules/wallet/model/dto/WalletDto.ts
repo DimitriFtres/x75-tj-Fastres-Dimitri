@@ -1,4 +1,5 @@
 import {Employee, Organization} from "../../../org-empl/model/business";
+// @ts-ignore
 import {Dto} from "@Common/Dto";
 
 export interface WalletDto extends Dto

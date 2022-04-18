@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,17 +28,30 @@ public class Document {
     private String path;
     private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_employee_id", nullable = true, referencedColumnName = "employee_id")
-    private Employee employee;
+    @ManyToMany
+    @JoinColumn(name = "document_id", nullable = true)
+    private List<Employee> employees;
+
+    @ManyToMany
+    @JoinColumn(name = "document_id", nullable = true)
+    private List<Organization> organizations;
 
     @OneToOne
-    @JoinColumn(name = "FK_organization_id", nullable = true, referencedColumnName = "organization_id")
-    private Organization organization;
-
-    @OneToOne
-    @JoinColumn(name = "FK_transaction_id", nullable = true, referencedColumnName = "transaction_id")
+    @JoinColumn(name = "document_id", nullable = true)
     private Transaction transaction;
+
+    public Document(DocumentUpdatePayload payload)
+    {
+        this.setDescription(payload.getDescription());
+        this.setName(payload.getName());
+        this.setEmployees(payload.getEmployees());
+        this.setOrganizations(payload.getOrganizations());
+        this.setPath(payload.getPath());
+        this.setFree_access(payload.isFree_access());
+        this.setTransaction(payload.getTransaction());
+        this.setType(payload.getType());
+
+    }
 
     public static class Builder
     {
@@ -47,8 +61,8 @@ public class Document {
         private boolean free_access;
         private String path;
         private String type;
-        private Employee employee;
-        private Organization organization;
+        private List<Employee> employees;
+        private List<Organization> organizations;
         private Transaction transaction;
 
         public Builder setTransaction(Transaction transaction) {
@@ -56,13 +70,13 @@ public class Document {
             return this;
         }
 
-        public Builder setEmployee(Employee employee) {
-            this.employee = employee;
+        public Builder setEmployees(List<Employee> employees) {
+            this.employees = employees;
             return this;
         }
 
-        public Builder setOrganization(Organization organization) {
-            this.organization = organization;
+        public Builder setOrganizations(List<Organization> organizations) {
+            this.organizations = organizations;
             return this;
         }
 
@@ -98,7 +112,7 @@ public class Document {
 
         public Document build()
         {
-            return new Document(document_id, name, description, free_access, path, type, employee, organization, transaction);
+            return new Document(document_id, name, description, free_access, path, type, employees, organizations, transaction);
         }
     }
 

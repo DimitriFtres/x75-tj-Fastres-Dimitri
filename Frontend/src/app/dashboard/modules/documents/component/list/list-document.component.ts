@@ -10,17 +10,14 @@ import {Document} from "@documents/model";
   styleUrls: ['./list-document.component.scss']
 })
 export class ListDocumentComponent implements OnInit {
-  documents: Document[] = [];
-  service$: BehaviorSubject<Document[]> = new BehaviorSubject<Document[]>([]);
 
   constructor(public documentService: DocumentService) { }
 
   ngOnInit(): void {
-    this.documentService.getList().subscribe(documents => this.documents = documents);
+    this.documentService.getList().subscribe();
   }
 
-  deleteClick(document: Document) {
-    this.documentService.deleteDocument(document.document_id.toString()).subscribe()
-    this.documentService.getList();
+  deleteClick(document_id: number) {
+    this.documentService.deleteDocument(document_id.toString()).subscribe();
   }
 }

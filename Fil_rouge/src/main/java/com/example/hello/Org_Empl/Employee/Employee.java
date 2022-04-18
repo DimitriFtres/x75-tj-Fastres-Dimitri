@@ -51,7 +51,7 @@ public class Employee {
         boolean actif = false;
         Account account;
         private Address address;
-        Organization organization = new Organization(1,"no name","no description",false);
+        Organization organization;
 
         public Builder setEmployee_id(int employee_id) {
             this.employee_id = employee_id;

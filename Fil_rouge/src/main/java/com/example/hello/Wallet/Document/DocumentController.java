@@ -12,10 +12,6 @@ public class DocumentController {
     @Autowired
     DocumentRepository documentRepository;
 
-
-
-
-
     @GetMapping("/list")
     public ApiResponse list(){
         return new ApiResponse(true,documentRepository.findAll(),BASE_CODE + "list.sucess");
@@ -38,9 +34,9 @@ public class DocumentController {
                         .setFree_access(payload.isFree_access())
                         .setPath(payload.getPath())
                         .setType(payload.getType())
-                        .setEmployee(payload.getEmployee())
+                        .setEmployees(payload.getEmployees())
                         .setTransaction(payload.getTransaction())
-                        .setOrganization(payload.getOrganization()).build();
+                        .setOrganizations(payload.getOrganizations()).build();
                 Document newdocument = documentRepository.save(document);
                 return new ApiResponse(true, newdocument, BASE_CODE + "create.success");
             } catch (Exception e) {
@@ -51,25 +47,13 @@ public class DocumentController {
 
     @PutMapping("/update")
     public ApiResponse update(@RequestBody DocumentUpdatePayload payload) {
-        try {
-//            if(orgRepository.findById(payload.getOrganisation().getId()) == null){
-//                payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
-//            }
-            Document document = new Document.Builder()
-                    .setDocument_id(payload.getDocument_id())
-                    .setName(payload.getName())
-                    .setDescription(payload.getDescription())
-                    .setFree_access(payload.isFree_access())
-                    .setPath(payload.getPath())
-                    .setType(payload.getType())
-                    .setEmployee(payload.getEmployee())
-                    .setTransaction(payload.getTransaction())
-                    .setOrganization(payload.getOrganization()).build();
-            Document newdocument = documentRepository.save(document);
-            return new ApiResponse(true, newdocument, BASE_CODE + "create.success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ApiResponse(false, null, BASE_CODE + "create.error");
+        Document document = documentRepository.findById(payload.getDocument_id());
+        if(document != null){
+            Document newDocument = new Document(payload);
+            Document freshDocument = documentRepository.save(newDocument);
+            return new ApiResponse(true, freshDocument, null);
+        } else {
+            return new ApiResponse(false, null, "404");
         }
     }
 

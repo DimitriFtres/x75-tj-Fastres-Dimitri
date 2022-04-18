@@ -1,7 +1,8 @@
 import {Wallet} from "../business/Wallet";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
-export interface transactionAddPayload extends Payload
+export interface TransactionAddPayload extends Payload
 {
   transaction_id: number;
   type: String;

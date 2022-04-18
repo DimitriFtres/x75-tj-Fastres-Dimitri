@@ -11,7 +11,7 @@ export interface DocumentUpdatePayload extends Payload
   free_access: boolean;
   path: String;
   type: String;
-  employee: Employee;
-  organization: Organization;
+  employees: Employee[];
+  organizations: Organization[];
   transaction: Transaction;
 }

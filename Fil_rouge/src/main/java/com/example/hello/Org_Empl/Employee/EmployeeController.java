@@ -15,7 +15,7 @@ public class EmployeeController {
 
     @GetMapping("/list")
     public ApiResponse list(){
-        return new ApiResponse(true,employeeRepository.findAll(),BASE_CODE + "list.sucess");
+        return new ApiResponse(true,employeeRepository.findAll().stream().distinct(),BASE_CODE + "list.sucess");
     }
 
     @GetMapping("/detail/{id}")

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {map, switchMap} from "rxjs/operators";
-import {Organization, OrganizationAddPayload, OrganizationUpdatePayload} from '@org-empl/model';
+import {map, switchMap, tap} from "rxjs/operators";
 import {ApiService, HttpService} from "@shared/service";
+import {Organization, OrganizationAddPayload, OrganizationUpdatePayload} from "@org-empl/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrganizationService extends ApiService{
+
+  organizations$: BehaviorSubject<Organization[]> = new BehaviorSubject<Organization[]>([]);
 
   constructor(public http: HttpService) {
     super(http);
@@ -23,12 +25,15 @@ export class OrganizationService extends ApiService{
           }else{
             return [];
           }
+        }),
+        tap((response: Organization[]) => {
+          this.organizations$.next(response);
         })
       );
   }
 
   getDetail(organization_id: string): Observable<Organization> {
-    return this.http.get(this.baseUrl+`organization/${organization_id}`)
+    return this.http.get(this.baseUrl+`organization/detail/${organization_id}`)
       .pipe(
         map((response) => {
           return response.data as Organization
@@ -41,6 +46,16 @@ export class OrganizationService extends ApiService{
       .pipe(
         map((response) => {
           return response.data as Organization
+        }),
+        tap((response: Organization) => {
+          this.organizations$.getValue().forEach((e, index) => {
+            if(e.organization_id.toString() == organization_id)
+            {
+              let value = this.organizations$.getValue();
+              value.splice(index, 1);
+              this.organizations$.next(value);
+            }
+          });
         })
       );
   }
@@ -54,13 +69,17 @@ export class OrganizationService extends ApiService{
           } else{
             return of([]);
           }
+        }),
+        tap((response: Organization[]) => {
+          this.organizations$.next(response);
         })
       );
 
   }
 
   update(payload: OrganizationUpdatePayload): Observable<Organization[]> {
-    return this.http.put(this.baseUrl+'organization', payload)
+    console.log(JSON.stringify(payload));
+    return this.http.put(this.baseUrl+'organization/update/', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -68,6 +87,9 @@ export class OrganizationService extends ApiService{
           } else{
             return of([]);
           }
+        }),
+        tap((response: Organization[]) => {
+          this.organizations$.next(response);
         })
       );
   }

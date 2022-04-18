@@ -19,7 +19,6 @@ export class AddContactComponent implements OnInit {
     phone : new FormControl('', [Validators.required]),
     address : new FormControl('', [])
   });
-  addresses: Address[] = [];
 
   constructor(public contactService : ContactService,
               public addressService : AddressService) { }
@@ -29,13 +28,30 @@ export class AddContactComponent implements OnInit {
     this.addressService.getList().subscribe();
   }
   submit(){
-    this.addressService.getDetail(this.formContact.value.address).subscribe(e => {
-      this.formContact.value.address = e;
-      console.log(this.formContact.value.address);
-      this.contactService.create(this.formContact.value as ContactAddPayload).subscribe(ev => {
-        console.log("add" + ev);
-        console.log("add" + JSON.stringify(this.formContact.value));
+    console.log(JSON.stringify(this.formContact.value.address));
+    console.log(this.formContact.value);
+
+    if(this.formContact.value.address == 0)
+    {
+      this.formContact.value.address = {};
+      this.createContact();
+    }
+    else
+    {
+      this.addressService.getDetail(this.formContact.value.address).subscribe(e => {
+        this.formContact.value.address = e;
+        console.log(this.formContact.value.address);
+        this.createContact();
       });
+    }
+
+
+  }
+  createContact()
+  {
+    this.contactService.create(this.formContact.value as ContactAddPayload).subscribe(ev => {
+      console.log("add" + ev);
+      console.log("add" + JSON.stringify(this.formContact.value));
     });
   }
 

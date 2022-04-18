@@ -16,10 +16,10 @@ public class OrganizationController {
 
     @GetMapping("/list")
     public ApiResponse getList(){
-        return new ApiResponse(true, organizationRepository.findAll(), BASE_CODE);
+        return new ApiResponse(true, organizationRepository.findAll().stream().distinct(), BASE_CODE);
     }
 
-    @GetMapping("/organisation/{id}")
+    @GetMapping("/detail/{id}")
     public ApiResponse getOrganization(@PathVariable int id){
         return new ApiResponse(true, organizationRepository.findById(id), BASE_CODE);
     }
@@ -30,7 +30,8 @@ public class OrganizationController {
         Organization organization = new Organization.Builder()
                 .setName(payload.getName())
                 .setDescription(payload.getDescription())
-                .setActif(payload.isActif()).build();
+                .setActif(payload.isActif())
+                .setAddress(payload.getAddress()).build();
         Organization newOrganization = organizationRepository.save(organization);
         return new ApiResponse(true, newOrganization, BASE_CODE);
     }

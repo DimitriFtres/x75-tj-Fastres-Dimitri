@@ -1,14 +1,48 @@
-<table>
-  <tr *ngFor="let document of documents">
-    <td>{{document.name}}</td>
-    <td>{{document.description}}</td>
-    <td>{{document.free_access}}</td>
-    <td>{{document.path}}</td>
-    <td>{{document.type}}</td>
-    <td>{{document.employee}}</td>
-    <td>{{document.organization.name}}</td>
-    <td>{{document.transaction.amount}}</td>
-    <button class="btn btn-danger" (click)="deleteClick(document)">Supprimer</button>
+<h1 class="h3 text-center pb-3">List des documents</h1>
+
+<table class="table table-striped ms-3">
+  <thead>
+  <tr class="row">
+    <td class="col p-2">Nom</td>
+    <td class="col p-2">Description</td>
+    <td class="col p-2">Access</td>
+    <td class="col p-2">Chemin</td>
+    <td class="col p-2">Type</td>
+    <td class="col p-2">Employé</td>
+    <td class="col p-2">Organisation</td>
+    <td class="col p-2">Transaction</td>
+    <td class="col p-2"></td>
+    <td class="col p-2"></td>
   </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let document of documentService.documents$ | async">
+    <tr class="row" id="{{document.document_id}}">
+      <td class="col p-2">{{document.name}}</td>
+      <td class="col p-2">{{document.description}}</td>
+      <td class="col p-2">{{document.free_access}}</td>
+      <td class="col p-2">{{document.path}}</td>
+      <td class="col p-2">{{document.type}}</td>
+      <td class="col p-2" *ngFor="let employee in document.employees" [appEmployee]="employee"></td>
+      <td class="col p-2" *ngFor="let organization in document.organizations" [appOrganization]="organization"></td>
+      <td class="col p-2" [appTransaction]="document.transaction"></td>
+      <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClick(document.document_id)">Supprimer</button></td>
+      <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/'+document.document_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
 </table>
+<!--<table>-->
+<!--  <tr *ngFor="let document of documentService.documents$ | async">-->
+<!--    <td>{{document.name}}</td>-->
+<!--    <td>{{document.description}}</td>-->
+<!--    <td>{{document.free_access}}</td>-->
+<!--    <td>{{document.path}}</td>-->
+<!--    <td>{{document.type}}</td>-->
+<!--    <td [appEmployee]="document.employee"></td>-->
+<!--    <td [appOrganization]="document.organization"></td>-->
+<!--    <td [appTransaction]="document.transaction"></td>-->
+<!--    <button class="btn btn-danger" (click)="deleteClick(document)">Supprimer</button>-->
+<!--  </tr>-->
+<!--</table>-->
 

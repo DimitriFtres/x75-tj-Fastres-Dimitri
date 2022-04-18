@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -17,8 +19,8 @@ public class DocumentCreatePayload {
     private boolean free_access;
     private String path;
     private String type;
-    private Employee employee;
-    private Organization organization;
+    private List<Employee> employees;
+    private List<Organization> organizations;
     private Transaction transaction;
 
 }

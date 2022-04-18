@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {map, switchMap} from "rxjs/operators";
+import {map, switchMap, tap} from "rxjs/operators";
 import {DocumentAddPayload, DocumentUpdatePayload} from "@documents/model";
 import {Document} from "@documents/model";
 import {ApiService, HttpService} from "@shared/service";
+import {Contact} from "@contact/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentService extends ApiService {
+  documents$: BehaviorSubject<Document[]> = new BehaviorSubject<Document[]>([]);
 
   constructor(public http: HttpService) {
     super(http);
@@ -24,6 +26,9 @@ export class DocumentService extends ApiService {
           }else{
             return [];
           }
+        }),
+        tap((response: Document[]) => {
+          this.documents$.next(response);
         })
       );
   }
@@ -42,11 +47,21 @@ export class DocumentService extends ApiService {
       .pipe(
         map((response) => {
           return response.data as Document
+        }),
+        tap((response: Document) => {
+          this.documents$.getValue().forEach((e, index) => {
+            if(e.document_id.toString() == document_id)
+            {
+              let value = this.documents$.getValue();
+              value.splice(index, 1);
+              this.documents$.next(value);
+            }
+          })
         })
       );
   }
 
-  create(payload: DocumentAddPayload): Observable<Document[]> {
+    create(payload: DocumentAddPayload): Observable<Document[]> {
     return this.http.post(this.baseUrl+'document/create', payload)
       .pipe(
         switchMap((response) => {
@@ -55,6 +70,9 @@ export class DocumentService extends ApiService {
           } else{
             return of([]);
           }
+        }),
+        tap((response: Document[]) => {
+          this.documents$.next(response);
         })
       );
 
@@ -69,6 +87,9 @@ export class DocumentService extends ApiService {
           } else{
             return of([]);
           }
+        }),
+        tap((response: Document[]) => {
+          this.documents$.next(response);
         })
       );
   }

@@ -1,37 +1,66 @@
 <form method="POST" (submit)="submit()" [formGroup]="formDocument" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
-    <label for="name">name : </label>
+    <label for="name">Nom : </label>
     <input type="text" id="name" [name]="'name'" formControlName="name">
   </div>
   <div class="d-flex justify-content-between">
-    <label for="description">description : </label>
+    <label for="description">Description : </label>
     <input type="text" id="description" [name]="'description'" formControlName="description">
   </div>
   <div class="d-flex justify-content-between">
-    <label for="free_access">free_access : </label>
-    <input type="text" id="free_access" [name]="'free_access'" formControlName="free_access">
+    <label for="free_access">Accès libre : </label>
+    <div>
+      <input type="checkbox" id="free_access" [name]="'free_access'" formControlName="free_access" class="">
+      <label for="free_access">Laissez l'accès libre </label>
+    </div>
   </div>
   <div class="d-flex justify-content-between">
-    <label for="path">path : </label>
+    <label for="path">Chemin : </label>
     <input type="text" id="path" [name]="'path'" formControlName="path">
   </div>
   <div class="d-flex justify-content-between">
-    <label for="type">type : </label>
+    <label for="type">Type : </label>
     <input type="text" id="type" [name]="'type'" formControlName="type">
   </div>
   <div class="d-flex justify-content-between">
-    <label for="employee">employee : </label>
-    <input type="text" id="employee" [name]="'employee'" formControlName="employee">
+    <span>Employé : </span>
+    <div>
+      <div id="employee">
+        <select name="employeeSelector" id="employeeSelector" [name]="'employee'" formControlName="employee">
+          <option value="0"></option>
+          <ng-container *ngFor="let employee of employeeService.employees$ | async">
+            <option [appEmployee]="employee"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="d-flex justify-content-between">
-    <label for="organization">organization : </label>
-    <input type="text" id="organization" [name]="'organization'" formControlName="organization">
+    <span>Organisation : </span>
+    <div>
+      <div id="organization">
+        <select name="organizationSelector" id="organizationSelector" [name]="'organization'" formControlName="organization">
+          <option value="0"></option>
+          <ng-container *ngFor="let organization of organizationService.organizations$ | async">
+            <option [appOrganization]="organization"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="d-flex justify-content-between">
-    <label for="transaction">transaction : </label>
-    <input type="text" id="transaction" [name]="'transaction'" formControlName="transaction">
+    <span>Transaction : </span>
+    <div>
+      <div id="transaction">
+        <select name="transactionSelector" id="transactionSelector" [name]="'transaction'" formControlName="transaction">
+          <option value="0"></option>
+          <ng-container *ngFor="let transaction of transactionService.transactions$ | async">
+            <option [appTransaction]="transaction"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
   </div>
-
   <button [disabled]="formDocument.invalid">Ajouter contact</button>
 </form>
 

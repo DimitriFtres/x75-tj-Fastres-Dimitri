@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DocumentService} from "@documents/service/document.service";
 import {DocumentAddPayload, Document} from "@documents/model";
+import {EmployeeService} from "@org-empl/service/employee.service";
+import {OrganizationService} from "@org-empl/service/organization.service";
+import {TransactionService} from "@wallet/service/transaction.service";
 
 
 @Component({
@@ -11,8 +14,6 @@ import {DocumentAddPayload, Document} from "@documents/model";
   styleUrls: ['./add-document.component.scss']
 })
 export class AddDocumentComponent implements OnInit {
-
-  documents!: Document[];
 
   formDocument: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
@@ -25,15 +26,26 @@ export class AddDocumentComponent implements OnInit {
     transaction : new FormControl('', [Validators.required])
   });
 
-  constructor(public documentService : DocumentService) { }
+  constructor(public documentService : DocumentService,
+              public employeeService : EmployeeService,
+              public organizationService : OrganizationService,
+              public transactionService : TransactionService) { }
 
   ngOnInit(): void {
-    this.documentService.getList().subscribe(documents => this.documents = documents);
+    this.documentService.getList().subscribe();
+    this.employeeService.getList().subscribe();
+    this.organizationService.getList().subscribe(e => console.log(e));
+    this.transactionService.getList().subscribe();
 
   }
   submit(){
-    this.documentService.create(this.formDocument.value as DocumentAddPayload).subscribe(documents => this.documents = documents);
-    this.documentService.getList().subscribe(documents => this.documents = documents);
-
+    console.log(this.formDocument.value as DocumentAddPayload);
+    this.employeeService.getDetail(this.formDocument.value.employee).subscribe(e => this.formDocument.value.employee = e);
+    console.log(this.formDocument.value as DocumentAddPayload);
+    this.organizationService.getDetail(this.formDocument.value.organization).subscribe(e => this.formDocument.value.organization = e);
+    console.log(this.formDocument.value as DocumentAddPayload);
+    this.transactionService.getDetail(this.formDocument.value.transaction).subscribe(e => this.formDocument.value.transaction = e);
+    console.log(this.formDocument.value as DocumentAddPayload);
+    this.documentService.create(this.formDocument.value as DocumentAddPayload).subscribe();
   }
 }

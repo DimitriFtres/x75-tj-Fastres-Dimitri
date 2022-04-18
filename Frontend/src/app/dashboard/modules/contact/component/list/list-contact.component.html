@@ -1,8 +1,10 @@
+<h1 class="h3 text-center pb-3">List des contacts</h1>
+
 <table class="table table-striped">
   <thead>
     <tr class="row h6">
       <td class="col">Prénom</td>
-      <td class="col">Nom de famille</td>
+      <td class="col">Nom</td>
       <td class="col">Email</td>
       <td class="col">Téléphone</td>
       <td class="col">Adresse</td>
@@ -17,10 +19,9 @@
         <td class="col">{{contact.lastname}}</td>
         <td class="col">{{contact.email}}</td>
         <td class="col">{{contact.phone}}</td>
-        <td class="col">{{contact.address.address_id}}{{contact.address.road}} {{contact.address.number}}, {{contact.address.town}}
-          <br/>{{contact.address.cp}} {{contact.address.country}}</td>
+        <td class="col" [appAddresse]="contact.address"></td>
         <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(contact.contact_id)">Supprimer</button></td>
-        <td class="col"><button class="btn btn-primary bg-primary" (click)="modify(contact)">Modifier</button></td>
+        <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/'+contact.contact_id" >Modifier</a></td>
       </tr>
     </ng-container>
   </tbody>

@@ -1,4 +1,5 @@
 import {Employee, Organization} from "../../../org-empl/model/business";
+// @ts-ignore
 import {Payload} from "@Common/Payload";
 
 export interface WalletAddPayload extends Payload

@@ -20,6 +20,12 @@ import {OrgEmplHomeComponent} from "@org-empl/component";
 import {HttpInterceptorService} from "@shared/service";
 import { DeleteButtonComponent } from './shared/buttons/delete-button/delete-button.component';
 import { SubHeaderComponent } from './shared/header/sub-header/sub-header.component';
+import { AddresseDirective } from './directive/addresse/addresse.directive';
+import {ContactModifyComponent} from "@contact/component/contact-modify/contact-modify.component";
+import { ModifyUrlDirective } from './directive/modifyUrl/modify-url.directive';
+import { EmployeeDirective } from './directive/employee/employee.directive';
+import { OrganizationDirective } from './directive/organization/organization.directive';
+import { TransactionDirective } from './directive/transaction/transaction.directive';
 
 
 
@@ -38,7 +44,13 @@ import { SubHeaderComponent } from './shared/header/sub-header/sub-header.compon
         ListOrgEmplComponent,
         OrgEmplHomeComponent,
         DeleteButtonComponent,
-        SubHeaderComponent
+        SubHeaderComponent,
+        AddresseDirective,
+        ContactModifyComponent,
+        ModifyUrlDirective,
+        EmployeeDirective,
+        OrganizationDirective,
+        TransactionDirective,
     ],
     imports: [
         BrowserModule,

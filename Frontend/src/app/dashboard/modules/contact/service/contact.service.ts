@@ -35,7 +35,7 @@ export class ContactService extends ApiService{
   }
 
   getDetail(contact_id: string): Observable<Contact> {
-    return this.http.get(this.baseUrl+`contact/${contact_id}`)
+    return this.http.get(this.baseUrl+`contact/detail/${contact_id}`)
       .pipe(
         map((response) => {
           return response.data as Contact
@@ -80,7 +80,8 @@ export class ContactService extends ApiService{
   }
 
   update(payload: ContactUpdatePayload): Observable<Contact[]> {
-    return this.http.put(this.baseUrl+'account', payload)
+    console.log(JSON.stringify(payload));
+    return this.http.put(this.baseUrl+'contact/update/', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){

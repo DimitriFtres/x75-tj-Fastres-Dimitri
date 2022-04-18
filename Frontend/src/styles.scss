@@ -1,17 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~mdb-ui-kit/css/mdb.min.css';
 
-.sub-header{
-  position : absolute;
-  top: 100%;
-  left : 0;
-  transform: translate(0, -100%);
-}
 .p-hover1{
-  position : absolute;
-  top: 100%;
-  left : 0;
-  transform: translate(0, -100%);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width : fit-content;
+  color: white;
   &:hover{
 
     .hidden1{
@@ -30,10 +25,11 @@
   }
 }
 .p-hover2{
-  position : absolute;
-  top: 100%;
-  left : 0;
-  transform: translate(0, -200%);
+  position: fixed;
+  bottom: 0;
+  left: 0;  width : fit-content;
+  color: white;
+  transform: translate(0,-100%);
   &:hover{
     .hidden2{
       width: 100%;
@@ -48,25 +44,6 @@
     transition: all ease 0.5s;
 
   }
-}.p-hover3{
-   position : absolute;
-   top: 100%;
-   left : 0;
-   transform: translate(0, -300%);
-   &:hover{
-     .hidden3{
-       width: 100%;
-       margin : 0 5px 0 5px;
-       transition: all ease 0.5s;
-       visibility: visible;
-     }
-   }
-   .hidden3 {
-     width: 0;
-     visibility: hidden;
-     transition: all ease 0.5s;
-
-   }
- }
+}
 
 

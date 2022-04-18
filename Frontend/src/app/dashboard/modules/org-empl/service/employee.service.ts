@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {Employee, EmployeeAddPayload, EmployeeUpdatePayload} from "@org-empl/model";
-import {map, switchMap} from "rxjs/operators";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {map, switchMap, tap} from "rxjs/operators";
 import {ApiService, HttpService} from "@shared/service";
+import {Employee, EmployeeAddPayload, EmployeeUpdatePayload} from "@org-empl/model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService extends ApiService {
+export class EmployeeService extends ApiService{
 
+  employees$: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
 
   constructor(public http: HttpService) {
     super(http);
@@ -24,12 +25,15 @@ export class EmployeeService extends ApiService {
           }else{
             return [];
           }
+        }),
+        tap((response: Employee[]) => {
+          this.employees$.next(response);
         })
       );
   }
 
   getDetail(employee_id: string): Observable<Employee> {
-    return this.http.get(this.baseUrl+`employee/${employee_id}`)
+    return this.http.get(this.baseUrl+`employee/detail/${employee_id}`)
       .pipe(
         map((response) => {
           return response.data as Employee
@@ -42,6 +46,16 @@ export class EmployeeService extends ApiService {
       .pipe(
         map((response) => {
           return response.data as Employee
+        }),
+        tap((response: Employee) => {
+          this.employees$.getValue().forEach((e, index) => {
+            if(e.employee_id.toString() == employee_id)
+            {
+              let value = this.employees$.getValue();
+              value.splice(index, 1);
+              this.employees$.next(value);
+            }
+          });
         })
       );
   }
@@ -55,13 +69,17 @@ export class EmployeeService extends ApiService {
           } else{
             return of([]);
           }
+        }),
+        tap((response: Employee[]) => {
+          this.employees$.next(response);
         })
       );
 
   }
 
   update(payload: EmployeeUpdatePayload): Observable<Employee[]> {
-    return this.http.put(this.baseUrl+'employee', payload)
+    console.log(JSON.stringify(payload));
+    return this.http.put(this.baseUrl+'employee/update/', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){
@@ -69,7 +87,11 @@ export class EmployeeService extends ApiService {
           } else{
             return of([]);
           }
+        }),
+        tap((response: Employee[]) => {
+          this.employees$.next(response);
         })
       );
   }
+
 }
