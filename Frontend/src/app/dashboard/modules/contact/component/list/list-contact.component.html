@@ -19,7 +19,7 @@
         <td class="col">{{contact.lastname}}</td>
         <td class="col">{{contact.email}}</td>
         <td class="col">{{contact.phone}}</td>
-        <td class="col" [appAddresse]="contact.address"></td>
+        <td class="col" *ngFor="let address of contact.addresses" [appAddresse]="address"></td>
         <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(contact.contact_id)">Supprimer</button></td>
         <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/'+contact.contact_id" >Modifier</a></td>
       </tr>

@@ -6,6 +6,7 @@ import {DocumentAddPayload, Document} from "@documents/model";
 import {EmployeeService} from "@org-empl/service/employee.service";
 import {OrganizationService} from "@org-empl/service/organization.service";
 import {TransactionService} from "@wallet/service/transaction.service";
+import {AccountService} from "@auth/service/account.service";
 
 
 @Component({
@@ -21,9 +22,9 @@ export class AddDocumentComponent implements OnInit {
     free_access : new FormControl('', [Validators.required]),
     path : new FormControl('', [Validators.required]),
     type : new FormControl('', [Validators.required]),
-    employee : new FormControl('', [Validators.required]),
-    organization : new FormControl('', [Validators.required]),
-    transaction : new FormControl('', [Validators.required])
+    employee : new FormControl('', ),
+    organization : new FormControl('', ),
+    transaction : new FormControl('', )
   });
 
   constructor(public documentService : DocumentService,
@@ -34,9 +35,8 @@ export class AddDocumentComponent implements OnInit {
   ngOnInit(): void {
     this.documentService.getList().subscribe();
     this.employeeService.getList().subscribe();
-    this.organizationService.getList().subscribe(e => console.log(e));
+    this.organizationService.getList().subscribe();
     this.transactionService.getList().subscribe();
-
   }
   submit(){
     console.log(this.formDocument.value as DocumentAddPayload);
@@ -46,6 +46,6 @@ export class AddDocumentComponent implements OnInit {
     console.log(this.formDocument.value as DocumentAddPayload);
     this.transactionService.getDetail(this.formDocument.value.transaction).subscribe(e => this.formDocument.value.transaction = e);
     console.log(this.formDocument.value as DocumentAddPayload);
-    this.documentService.create(this.formDocument.value as DocumentAddPayload).subscribe();
+    this.documentService.create(this.formDocument.value as DocumentAddPayload).subscribe(e => console.log(e));
   }
 }

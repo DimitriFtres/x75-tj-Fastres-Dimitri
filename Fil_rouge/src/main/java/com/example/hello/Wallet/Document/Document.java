@@ -3,14 +3,12 @@ package com.example.hello.Wallet.Document;
 import com.example.hello.Org_Empl.Employee.Employee;
 import com.example.hello.Org_Empl.Organization.Organization;
 import com.example.hello.Wallet.Transaction.Transaction;
-import com.example.hello.Wallet.Wallet.Wallet;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -28,24 +26,24 @@ public class Document {
     private String path;
     private String type;
 
-    @ManyToMany
-    @JoinColumn(name = "document_id", nullable = true)
-    private List<Employee> employees;
+    @ManyToOne
+    @JoinColumn(name = "employee_id", nullable = true)
+    private Employee employee;
 
-    @ManyToMany
-    @JoinColumn(name = "document_id", nullable = true)
-    private List<Organization> organizations;
+    @ManyToOne
+    @JoinColumn(name = "organization_id", nullable = true)
+    private Organization organization;
 
     @OneToOne
-    @JoinColumn(name = "document_id", nullable = true)
+    @JoinColumn(name = "transaction_id", nullable = true)
     private Transaction transaction;
 
     public Document(DocumentUpdatePayload payload)
     {
         this.setDescription(payload.getDescription());
         this.setName(payload.getName());
-        this.setEmployees(payload.getEmployees());
-        this.setOrganizations(payload.getOrganizations());
+        this.setEmployee(payload.getEmployee());
+        this.setOrganization(payload.getOrganization());
         this.setPath(payload.getPath());
         this.setFree_access(payload.isFree_access());
         this.setTransaction(payload.getTransaction());
@@ -61,8 +59,8 @@ public class Document {
         private boolean free_access;
         private String path;
         private String type;
-        private List<Employee> employees;
-        private List<Organization> organizations;
+        private Employee employee;
+        private Organization organization;
         private Transaction transaction;
 
         public Builder setTransaction(Transaction transaction) {
@@ -70,13 +68,13 @@ public class Document {
             return this;
         }
 
-        public Builder setEmployees(List<Employee> employees) {
-            this.employees = employees;
+        public Builder setEmployee(Employee employee) {
+            this.employee = employee;
             return this;
         }
 
-        public Builder setOrganizations(List<Organization> organizations) {
-            this.organizations = organizations;
+        public Builder setOrganization(Organization organization) {
+            this.organization = organization;
             return this;
         }
 
@@ -112,7 +110,7 @@ public class Document {
 
         public Document build()
         {
-            return new Document(document_id, name, description, free_access, path, type, employees, organizations, transaction);
+            return new Document(document_id, name, description, free_access, path, type, employee, organization, transaction);
         }
     }
 

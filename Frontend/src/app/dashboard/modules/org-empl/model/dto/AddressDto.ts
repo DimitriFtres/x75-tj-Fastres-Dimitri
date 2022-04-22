@@ -1,6 +1,7 @@
 import {Employee, Organization} from "../business";
 // @ts-ignore
 import {Dto} from "@Common/Dto";
+import {Contact} from "@contact/model";
 
 export interface AddressDto extends Dto
 {
@@ -12,4 +13,7 @@ export interface AddressDto extends Dto
   cp: String;
   town: String;
   country: String;
+  contact: Contact;
+  employee: Employee;
+  organization: Organization;
 }

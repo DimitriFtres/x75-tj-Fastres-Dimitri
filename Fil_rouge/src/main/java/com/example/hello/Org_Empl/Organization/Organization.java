@@ -1,13 +1,14 @@
 package com.example.hello.Org_Empl.Organization;
 
 import com.example.hello.Org_Empl.Address.Address;
-import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,15 +23,15 @@ public class Organization {
     @NotNull
     private String description;
     private boolean actif;
-    @ManyToOne
-    @JoinColumn(name = "address_id", nullable = true, referencedColumnName = "address_id")
-    private Address address;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
+    @JsonManagedReference
+    private List<Address> addresses;
 
     public Organization(OrganizationUpdatePayload organization) {
         this.organization_id = organization.getOrganization_id();
         this.name = organization.getName();
         this.description = organization.getDescription();
-        this.address = organization.getAddress();
+        this.addresses = organization.getAddresses();
         this.actif = organization.isActif();
     }
 
@@ -40,7 +41,7 @@ public class Organization {
         private String name;
         private String description;
         private boolean actif;
-        private Address address;
+        private List<Address> addresses;
 
         public Builder setOrganization_id(int organization_id) {
             this.organization_id = organization_id;
@@ -62,14 +63,14 @@ public class Organization {
             return this;
         }
 
-        public Builder setAddress(Address address) {
-            this.address = address;
+        public Builder setAddresses(List<Address> addresses) {
+            this.addresses = addresses;
             return this;
         }
 
         public Organization build()
         {
-            return new Organization(organization_id, name, description, actif, address);
+            return new Organization(organization_id, name, description, actif, addresses);
         }
     }
 }

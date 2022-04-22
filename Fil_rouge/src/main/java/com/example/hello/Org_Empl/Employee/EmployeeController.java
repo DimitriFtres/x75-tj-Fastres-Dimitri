@@ -1,6 +1,5 @@
 package com.example.hello.Org_Empl.Employee;
 
-import com.example.hello.Auth.Account.Account;
 import com.example.hello.Common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class EmployeeController {
                         .setRole(payload.getRole())
                         .setAccount(payload.getAccount())
                         .setActif(payload.isActif())
-                        .setAddress(payload.getAddress())
+                        .setAddresses(payload.getAddresses())
                         .setOrganization(payload.getOrganization()).build();
                 Employee newEmployee = employeeRepository.save(employee);
                 return new ApiResponse(true, newEmployee, BASE_CODE + "create.success");

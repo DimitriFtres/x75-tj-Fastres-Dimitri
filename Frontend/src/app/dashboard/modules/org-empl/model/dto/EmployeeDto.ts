@@ -10,6 +10,6 @@ export interface EmployeeDto extends Dto
   actif: boolean;
   account: Account;
   organization: Organization;
-  address: Address;
+  addresses: Address[];
 
 }

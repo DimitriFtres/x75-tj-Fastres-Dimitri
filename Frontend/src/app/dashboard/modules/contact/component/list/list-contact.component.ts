@@ -18,13 +18,10 @@ export class ListContactComponent implements OnInit {
   }
 
   deleteClick(contact: number) {
-    this.contactService.deleteContact(contact.toString()).subscribe(contactdeleted => {
-      console.log(contact);
-    })
+    this.contactService.deleteContact(contact.toString()).subscribe()
   }
 
     modify(contact: Contact) {
-      console.log(document.getElementById(""+contact.contact_id));
       let row = document.getElementById(""+contact.contact_id);
       if(row != null)
       {

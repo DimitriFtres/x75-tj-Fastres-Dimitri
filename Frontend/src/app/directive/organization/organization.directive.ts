@@ -13,9 +13,9 @@ export class OrganizationDirective {
   ngOnInit(){
     this._elementRef.nativeElement.value = this.organization.organization_id;
 
-    this._elementRef.nativeElement.innerHTML += this.organization.name + " " +
-      this.organization.address.road + " " +
-      this.organization.address.number + ", " + this.organization.address.town + "\r\n" + this.organization.address.cp + " "
-      + this.organization.address.country + "\r\n" + this.organization.actif +". \r\n";
+    this._elementRef.nativeElement.innerHTML += this.organization.name + " " ;
+    this.organization.addresses.forEach(e => {
+      this._elementRef.nativeElement.innerHTML +=  e.road + " " + e.town + "\r\n" + e.cp + " " + e.country + " \r\n"
+    });
   }
 }

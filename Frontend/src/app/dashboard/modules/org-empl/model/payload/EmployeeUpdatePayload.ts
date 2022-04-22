@@ -10,6 +10,6 @@ export interface EmployeeUpdatePayload extends Payload
   actif: boolean;
   account: Account;
   organization: Organization;
-  address: Address;
+  addresses: Address[];
 
 }

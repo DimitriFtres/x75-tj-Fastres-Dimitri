@@ -1,35 +1,95 @@
-<h1>Address</h1>
-<table>
-  <tr *ngFor="let address of addresses">
-    <td>{{address.country}}</td>
-    <td>{{address.town}}</td>
-    <td>{{address.road}}</td>
-    <td>{{address.number}}</td>
-    <td>{{address.box}}</td>
-    <td>{{address.cp}}</td>
-    <td>{{address.type}}</td>
-    <button class="btn btn-danger" (click)="deleteClick(address)">Supprimer</button>
+<h1 class="h3 text-center">Address</h1>
+<table class="table table-striped ms-3">
+  <thead>
+  <tr class="row">
+    <td class="col p-2">Pays</td>
+    <td class="col p-2">Ville</td>
+    <td class="col p-2">Rue</td>
+    <td class="col p-2">Numéro</td>
+    <td class="col p-2">Boîte</td>
+    <td class="col p-2">Code Postal</td>
+    <td class="col p-2">Type</td>
+    <td class="col p-2"></td>
+    <td class="col p-2"></td>
   </tr>
-</table>
-<h1>Organization</h1>
-<table>
-  <tr *ngFor="let organization of organizations">
-    <td>{{organization.name}}</td>
-    <td>{{organization.description}}</td>
-    <td>{{organization.actif}}</td>
-    <button class="btn btn-danger" (click)="deleteClickOrganization(organization)">Supprimer</button>
-  </tr>
-</table>
-<h1>Employees</h1>
-<table>
-  <tr *ngFor="let employee of employees">
-    <td>{{employee.role}}</td>
-    <td>{{employee.actif}}</td>
-    <td>{{employee.account}}</td>
-    <td>{{employee.organization.name}}</td>
-    <td>{{employee.organization.description}}</td>
-    <td>{{employee.organization.actif}}</td>
-    <button class="btn btn-danger" (click)="deleteClickEmployee(employee)">Supprimer</button>
-  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let address of addressService.addresses$ | async">
+    <tr class="row" id="{{address.address_id}}">
+      <td class="col p-2">{{address.country}}</td>
+      <td class="col p-2">{{address.town}}</td>
+      <td class="col p-2">{{address.road}}</td>
+      <td class="col p-2">{{address.number}}</td>
+      <td class="col p-2">{{address.box}}</td>
+      <td class="col p-2">{{address.cp}}</td>
+      <td class="col p-2">{{address.type}}</td>
+      <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClick(address)">Supprimer</button></td>
+      <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'address/modify/'+address.address_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
 </table>
 
+<h1 class="h3 text-center">Organisation</h1>
+
+<table class="table table-striped ms-3">
+  <thead>
+  <tr class="row">
+    <td class="col p-2">Nom</td>
+    <td class="col p-2">Description</td>
+    <td class="col p-2">Actif</td>
+    <td class="col p-2">Adresse</td>
+    <td class="col p-2"></td>
+    <td class="col p-2"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let organization of organizationService.organizations$ | async ">
+    <tr class="row" id="{{organization.organization_id}}">
+      <td class="col p-2">{{organization.name}}</td>
+      <td class="col p-2">{{organization.description}}</td>
+      <td class="col p-2">{{organization.actif}}</td>
+      <td class="col p-2" [appOrganization]="organization"></td>
+      <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClickOrganization(organization)">Supprimer</button></td>
+      <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'organization/modify/'+organization.organization_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+<h1 class="h3 text-center">Employee</h1>
+
+<table class="table table-striped ms-3">
+  <thead>
+  <tr class="row">
+    <td class="col p-2">Role</td>
+    <td class="col p-2">Actif</td>
+    <td class="col p-2">Prenom</td>
+    <td class="col p-2">Nom</td>
+    <td class="col p-2">Adresse</td>
+    <td class="col p-2">Nom de l'organisation</td>
+    <td class="col p-2">Description de l'organisation</td>
+    <td class="col p-2">Organisation active</td>
+    <td class="col p-2">Adresse de l'organisation</td>
+    <td class="col p-2"></td>
+    <td class="col p-2"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let employee of employeeService.employees$ | async">
+    <tr class="row" id="{{employee.employee_id}}">
+      <td class="col p-2">{{employee.role}}</td>
+      <td class="col p-2">{{employee.actif}}</td>
+      <td class="col p-2">{{employee.account.firstname}}</td>
+      <td class="col p-2">{{employee.account.lastname}}</td>
+      <td class="col p-2" [appEmployee]="employee"></td>
+      <td class="col p-2">{{employee.organization.name}}</td>
+      <td class="col p-2">{{employee.organization.description}}</td>
+      <td class="col p-2">{{employee.organization.actif}}</td>
+      <td class="col p-2" [appOrganization]="employee.organization"></td>
+      <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClickEmployee(employee)">Supprimer</button></td>
+      <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'employee/modify/'+employee.employee_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

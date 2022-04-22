@@ -26,6 +26,11 @@ import { ModifyUrlDirective } from './directive/modifyUrl/modify-url.directive';
 import { EmployeeDirective } from './directive/employee/employee.directive';
 import { OrganizationDirective } from './directive/organization/organization.directive';
 import { TransactionDirective } from './directive/transaction/transaction.directive';
+import { AccountDirective } from './directive/account/account.directive';
+import {OrgEmplModifyComponent} from "@org-empl/component/org-empl-modify/org-empl-modify.component";
+import {OrgEmplModifyOrganizationComponent} from "@org-empl/component/org-empl-modify-organization/org-empl-modify-organization.component";
+import {OrgEmplModifyEmployeeComponent} from "@org-empl/component/org-empl-modify-employee/org-empl-modify-employee.component";
+import {DisplayAddressesComponent} from "@shared/display-addresses/display-addresses.component";
 
 
 
@@ -51,6 +56,11 @@ import { TransactionDirective } from './directive/transaction/transaction.direct
         EmployeeDirective,
         OrganizationDirective,
         TransactionDirective,
+        AccountDirective,
+        OrgEmplModifyComponent,
+        OrgEmplModifyOrganizationComponent,
+        OrgEmplModifyEmployeeComponent,
+        DisplayAddressesComponent
     ],
     imports: [
         BrowserModule,

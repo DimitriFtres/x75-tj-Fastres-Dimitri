@@ -23,8 +23,8 @@
       <td class="col p-2">{{document.free_access}}</td>
       <td class="col p-2">{{document.path}}</td>
       <td class="col p-2">{{document.type}}</td>
-      <td class="col p-2" *ngFor="let employee in document.employees" [appEmployee]="employee"></td>
-      <td class="col p-2" *ngFor="let organization in document.organizations" [appOrganization]="organization"></td>
+      <td class="col p-2" [appEmployee]="document.employee"></td>
+      <td class="col p-2" [appOrganization]="document.organization"></td>
       <td class="col p-2" [appTransaction]="document.transaction"></td>
       <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClick(document.document_id)">Supprimer</button></td>
       <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/'+document.document_id" >Modifier</a></td>

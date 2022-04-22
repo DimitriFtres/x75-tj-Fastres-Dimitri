@@ -10,4 +10,7 @@ export interface Address
   cp: String;
   town: String;
   country: String;
+  contact: Contact;
+  employee: Employee;
+  organization: Organization;
 }

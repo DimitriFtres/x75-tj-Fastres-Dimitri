@@ -1,15 +1,16 @@
 package com.example.hello.Org_Empl.Employee;
 
 import com.example.hello.Auth.Account.Account;
-import com.example.hello.Auth.Account.AccountUpdatePayload;
 import com.example.hello.Org_Empl.Address.Address;
 import com.example.hello.Org_Empl.Organization.Organization;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,9 +28,9 @@ public class Employee {
     @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "account_id")
     private Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id", nullable = true, referencedColumnName = "address_id")
-    private Address address;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    @JsonManagedReference
+    private List<Address> addresses;
 
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = false, referencedColumnName = "organization_id")
@@ -42,7 +43,7 @@ public class Employee {
         this.actif = employee.isActif();
         this.account = employee.getAccount();
         this.organization = employee.getOrganization();
-        this.address = employee.getAddress();
+        this.addresses = employee.getAddresses();
     }
 
     public static class Builder{
@@ -50,7 +51,7 @@ public class Employee {
         private String role;
         boolean actif = false;
         Account account;
-        private Address address;
+        private List<Address> addresses;
         Organization organization;
 
         public Builder setEmployee_id(int employee_id) {
@@ -78,13 +79,13 @@ public class Employee {
             return this;
         }
 
-        public Builder setAddress(Address address) {
-            this.address = address;
+        public Builder setAddresses(List<Address> addresses) {
+            this.addresses = addresses;
             return this;
         }
 
         public Employee build(){
-            return new Employee(employee_id, role, actif, account, address, organization);
+            return new Employee(employee_id, role, actif, account, addresses, organization);
         }
     }
 }

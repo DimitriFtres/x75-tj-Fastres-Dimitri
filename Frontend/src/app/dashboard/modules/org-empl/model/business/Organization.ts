@@ -6,6 +6,6 @@ export interface Organization
   name: String;
   description: String;
   actif: boolean;
-  address: Address;
+  addresses: Address[];
 
 }

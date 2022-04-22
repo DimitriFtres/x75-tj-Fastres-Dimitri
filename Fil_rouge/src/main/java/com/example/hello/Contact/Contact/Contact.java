@@ -1,12 +1,12 @@
 package com.example.hello.Contact.Contact;
 
 import com.example.hello.Org_Empl.Address.Address;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,9 +22,9 @@ public class Contact {
     private String email;
     private String phone;
 
-    @ManyToOne
-    @JoinColumn(name = "adress_id", nullable = true, referencedColumnName = "address_id")
-    private Address address; 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
+    @JsonManagedReference
+    private List<Address> addresses;
 
     public Contact(ContactUpdatePayload contact) {
         this.contact_id = contact.getContact_id();
@@ -32,7 +32,7 @@ public class Contact {
         this.lastname = contact.getLastname();
         this.email = contact.getEmail();
         this.phone = contact.getPhone();
-        this.address = contact.getAddress();
+        this.addresses = contact.getAddresses();
     }
 
     public static class Builder
@@ -42,7 +42,7 @@ public class Contact {
         private String lastname;
         private String email;
         private String phone;
-        private Address address;
+        private List<Address> addresses;
 
         public Builder setContact_id(int contact_id) {
             this.contact_id = contact_id;
@@ -69,14 +69,14 @@ public class Contact {
             return this;
         }
 
-        public Builder setAddress(Address address) {
-            this.address = address;
+        public Builder setAddresses(List<Address> addresses) {
+            this.addresses = addresses;
             return this;
         }
 
         public Contact build()
         {
-            return new Contact(contact_id, firstname, lastname, email, phone, address);
+            return new Contact(contact_id, firstname, lastname, email, phone, addresses);
         }
     }
 

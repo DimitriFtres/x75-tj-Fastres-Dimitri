@@ -8,5 +8,5 @@ export interface OrganizationUpdatePayload extends Payload
   name: String;
   description: String;
   actif: boolean;
-  address: Address;
+  addresses: Address[];
 }

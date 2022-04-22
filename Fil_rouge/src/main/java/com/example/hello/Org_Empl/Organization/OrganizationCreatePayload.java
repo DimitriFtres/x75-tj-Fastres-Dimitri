@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -13,7 +15,7 @@ public class OrganizationCreatePayload {
     private String name;
     private String description;
     private boolean actif;
-    private Address address;
+    private List<Address> addresses;
 
 
 }

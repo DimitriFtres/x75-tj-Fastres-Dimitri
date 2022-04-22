@@ -19,8 +19,8 @@ public class DocumentUpdatePayload {
     private boolean free_access;
     private String path;
     private String type;
-    private List<Employee> employees;
-    private List<Organization> organizations;
+    private Employee employee;
+    private Organization organization;
     private Transaction transaction;
 
 }

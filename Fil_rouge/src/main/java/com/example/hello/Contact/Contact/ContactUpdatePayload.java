@@ -20,5 +20,5 @@ public class ContactUpdatePayload {
     private String lastname;
     private String email;
     private String phone;
-    private Address address;
+    private List<Address> addresses;
 }

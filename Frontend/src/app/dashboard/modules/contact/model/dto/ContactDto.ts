@@ -9,5 +9,5 @@ export interface ContactDto extends Dto
   lastname: String;
   email: String;
   phone: String;
-  address: Address
+  addresses: Address[]
 }

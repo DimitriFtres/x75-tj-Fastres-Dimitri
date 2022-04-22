@@ -34,9 +34,9 @@ public class DocumentController {
                         .setFree_access(payload.isFree_access())
                         .setPath(payload.getPath())
                         .setType(payload.getType())
-                        .setEmployees(payload.getEmployees())
+                        .setEmployee(payload.getEmployee())
                         .setTransaction(payload.getTransaction())
-                        .setOrganizations(payload.getOrganizations()).build();
+                        .setOrganization(payload.getOrganization()).build();
                 Document newdocument = documentRepository.save(document);
                 return new ApiResponse(true, newdocument, BASE_CODE + "create.success");
             } catch (Exception e) {

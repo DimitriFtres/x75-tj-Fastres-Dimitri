@@ -4,6 +4,7 @@ import com.example.hello.Contact.Contact.Contact;
 import com.example.hello.Org_Empl.Employee.Employee;
 import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
 import com.example.hello.Org_Empl.Organization.Organization;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,21 @@ public class Address {
     @NotNull
     private String country;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id", nullable = true, referencedColumnName = "employee_id")
+    @JsonBackReference
+    private Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id", nullable = true, referencedColumnName = "organization_id")
+    @JsonBackReference
+    private Organization organization;
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id", nullable = true, referencedColumnName = "contact_id")
+    @JsonBackReference
+    private Contact contact;
+
     public Address(AddressUpdatePayload address) {
         this.address_id = address.getAddress_id();
         this.type = address.getType();
@@ -45,6 +61,9 @@ public class Address {
         this.cp = address.getCp();
         this.town = address.getTown();
         this.country = address.getCountry();
+        this.employee = address.getEmployee();
+        this.organization = address.getOrganization();
+        this.contact = address.getContact();
     }
 
     public static class Builder
@@ -57,6 +76,9 @@ public class Address {
         private String cp;
         private String town;
         private String country;
+        private Employee employee;
+        private Organization organization;
+        private Contact contact;
 
         public Builder setAddress_id(int address_id) {
             this.address_id = address_id;
@@ -98,9 +120,24 @@ public class Address {
             return this;
         }
 
+        public Builder setEmployee(Employee employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder setOrganization(Organization organization) {
+            this.organization = organization;
+            return this;
+        }
+
+        public Builder setContact(Contact contact) {
+            this.contact = contact;
+            return this;
+        }
+
         public Address build()
         {
-            return new Address(address_id, type, road, number, box, cp, town, country);
+            return new Address(address_id, type, road, number, box, cp, town, country, employee, organization, contact);
         }
     }
 }

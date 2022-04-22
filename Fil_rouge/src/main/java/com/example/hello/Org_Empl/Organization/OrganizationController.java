@@ -1,8 +1,6 @@
 package com.example.hello.Org_Empl.Organization;
 
 import com.example.hello.Common.ApiResponse;
-import com.example.hello.Org_Empl.Employee.Employee;
-import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +29,7 @@ public class OrganizationController {
                 .setName(payload.getName())
                 .setDescription(payload.getDescription())
                 .setActif(payload.isActif())
-                .setAddress(payload.getAddress()).build();
+                .setAddresses(payload.getAddresses()).build();
         Organization newOrganization = organizationRepository.save(organization);
         return new ApiResponse(true, newOrganization, BASE_CODE);
     }

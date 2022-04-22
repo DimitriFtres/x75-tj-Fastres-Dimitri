@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +17,6 @@ public class EmployeeUpdatePayload {
     private String role;
     private boolean actif;
     private Account account;
-    private Address address;
+    private List<Address> addresses;
     private Organization organization;
 }

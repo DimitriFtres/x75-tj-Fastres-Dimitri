@@ -15,7 +15,7 @@ public class AddressController {
 
     @GetMapping("/list")
     public ApiResponse list(){
-        return new ApiResponse(true, addressRepository.findAll(),BASE_CODE + "list.sucess");
+        return new ApiResponse(true, addressRepository.getAddressesNotLinked(),BASE_CODE + "list.sucess");
     }
 
     @GetMapping("/detail/{id}")

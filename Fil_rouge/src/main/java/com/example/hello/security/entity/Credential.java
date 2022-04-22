@@ -1,5 +1,6 @@
 package com.example.hello.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Credential {
     private int credential_id;
     @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
     private Boolean actif;
 

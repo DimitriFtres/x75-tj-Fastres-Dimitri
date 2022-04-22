@@ -4,6 +4,8 @@ import {Address, Employee, Organization} from "@org-empl/model";
 import {AddressService} from "@org-empl/service/address.service";
 import {OrganizationService} from "@org-empl/service/organization.service";
 import {EmployeeService} from "@org-empl/service/employee.service";
+import {Contact} from "@contact/model";
+import {AddressUpdatePayload} from "@org-empl/model/payload/AddressUpdatePayload";
 
 
 @Component({
@@ -12,33 +14,29 @@ import {EmployeeService} from "@org-empl/service/employee.service";
   styleUrls: ['./list-org-empl.component.scss']
 })
 export class ListOrgEmplComponent implements OnInit {
-  addresses: Address[] = [];
-  organizations: Organization[] = [];
-  employees: Employee[] = [];
-  service$: BehaviorSubject<Address[]> = new BehaviorSubject<Address[]>([]);
-  serviceOrganization$: BehaviorSubject<Organization[]> = new BehaviorSubject<Organization[]>([]);
-  serviceEmployee$: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
 
   constructor(public addressService: AddressService,
               public organizationService: OrganizationService,
               public employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.addressService.getList().subscribe(addresses => this.addresses = addresses);
+    this.addressService.getList().subscribe();
+    this.organizationService.getList().subscribe();
+    this.employeeService.getList().subscribe();
   }
 
   deleteClick(address: Address) {
-    this.addressService.deleteAddress(address.address_id.toString()).subscribe()
-    this.addressService.getList();
+    address.employee = {} as Employee;
+    address.organization = {} as Organization;
+    address.contact = {} as Contact;
+    this.addressService.update(address as AddressUpdatePayload).subscribe();
   }
 
   deleteClickOrganization(organization: Organization) {
     this.organizationService.deleteOrganization(organization.organization_id.toString()).subscribe()
-    this.organizationService.getList();
   }
 
   deleteClickEmployee(employee: Employee) {
     this.employeeService.deleteEmployee(employee.employee_id.toString()).subscribe()
-    this.employeeService.getList();
   }
 }

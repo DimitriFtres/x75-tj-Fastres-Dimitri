@@ -25,7 +25,7 @@ export class AddContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactService.contacts$.subscribe();
-    this.addressService.getList().subscribe();
+    this.addressService.getList().subscribe(e => console.log(e));
   }
   submit(){
     console.log(JSON.stringify(this.formContact.value.address));

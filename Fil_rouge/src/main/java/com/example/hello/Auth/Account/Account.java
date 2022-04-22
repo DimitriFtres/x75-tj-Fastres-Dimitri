@@ -1,6 +1,7 @@
 package com.example.hello.Auth.Account;
 
 import com.example.hello.security.entity.Credential;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Account {
     private String firstname;
     @NotNull
     private String lastname;
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="account_id")
     private Credential credential;

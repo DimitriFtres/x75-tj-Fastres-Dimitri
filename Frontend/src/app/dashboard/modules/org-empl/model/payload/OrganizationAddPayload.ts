@@ -7,5 +7,5 @@ export interface OrganizationAddPayload extends Payload
   name: String;
   description: String;
   actif: boolean;
-  address: Address;
+  addresses: Address[];
 }

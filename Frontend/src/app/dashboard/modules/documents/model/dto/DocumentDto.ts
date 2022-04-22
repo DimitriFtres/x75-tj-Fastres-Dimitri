@@ -11,7 +11,7 @@ export interface DocumentDto extends Dto
   free_access: boolean;
   path: String;
   type: String;
-  employees: Employee[];
-  organizations: Organization[];
+  employee: Employee;
+  organization: Organization;
   transaction: Transaction;
 }

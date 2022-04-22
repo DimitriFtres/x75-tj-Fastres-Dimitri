@@ -8,5 +8,5 @@ export interface ContactAddPayload extends Payload
   lastname: String;
   email: String;
   phone: String;
-  address: Address
+  addresses: Address[]
 }

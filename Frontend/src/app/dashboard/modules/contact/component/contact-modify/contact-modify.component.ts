@@ -4,7 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {ContactService} from "@contact/service/contact.service";
 import {AddressService} from "@org-empl/service/address.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Address} from "@org-empl/model";
+import {Address, Employee, Organization} from "@org-empl/model";
+import {AddressUpdatePayload} from "@org-empl/model/payload/AddressUpdatePayload";
 
 @Component({
   selector: 'app-contact-modify',
@@ -19,7 +20,6 @@ export class ContactModifyComponent implements OnInit {
     lastname : new FormControl('', [Validators.required]),
     email : new FormControl('', [Validators.required]),
     phone : new FormControl('', [Validators.required]),
-    address : new FormControl('', [])
   });
 
   constructor(public route: ActivatedRoute,
@@ -35,19 +35,35 @@ export class ContactModifyComponent implements OnInit {
   }
 
   submit() {
-    this.addressService.getDetail(this.formContact.value.address).subscribe(e => {
-      this.formContact.value.address = e;
-
       let updateContact = {
         contact_id: this.contact.contact_id,
         firstname: this.formContact.value.firstname,
         lastname: this.formContact.value.lastname,
         email: this.formContact.value.email,
         phone: this.formContact.value.phone,
-        address: e
+        addresses: this.contact.addresses
       } as ContactUpdatePayload
 
       this.contactService.update(updateContact).subscribe();
-    });
+  }
+
+  modifyAddress($event: Address) {
+    $event.employee = {} as Employee;
+    $event.organization = {} as Organization;
+    $event.contact = {} as Contact;
+    this.addressService.update($event as AddressUpdatePayload).subscribe();
+  }
+
+  addAddress($event: Address) {
+     this.contact.addresses.push($event);
+    let updateContact = {
+      contact_id: this.contact.contact_id,
+      firstname: this.formContact.value.firstname,
+      lastname: this.formContact.value.lastname,
+      email: this.formContact.value.email,
+      phone: this.formContact.value.phone,
+      addresses: this.contact.addresses
+    } as ContactUpdatePayload
+    this.contactService.update(updateContact).subscribe();
   }
 }

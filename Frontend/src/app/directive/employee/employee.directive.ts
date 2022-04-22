@@ -13,9 +13,11 @@ export class EmployeeDirective {
     this._elementRef.nativeElement.value = this.employee.employee_id;
 
     this._elementRef.nativeElement.innerHTML += this.employee.account.firstname + " " +
-      this.employee.account.lastname + ", " + this.employee.address.road + " " +
-      this.employee.address.number + ", " + this.employee.address.town + "\r\n" + this.employee.address.cp + " "
-      + this.employee.address.country + "\r\n" + this.employee.role + " " + this.employee.organization.name + " "
+      this.employee.account.lastname + ", "
+    this.employee.addresses.forEach(e => {
+      this._elementRef.nativeElement.innerHTML +=  e.road + " " + e.town + "\r\n" + e.cp + " " + e.country + " \r\n"
+    });
+    this._elementRef.nativeElement.innerHTML += "\r\n" + this.employee.role + " " + this.employee.organization.name + " "
       + this.employee.actif + ". \r\n";
   }
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
 import {DocumentService} from "@documents/service/document.service";
-import {Document} from "@documents/model";
 
 
 @Component({
@@ -14,7 +12,7 @@ export class ListDocumentComponent implements OnInit {
   constructor(public documentService: DocumentService) { }
 
   ngOnInit(): void {
-    this.documentService.getList().subscribe();
+    this.documentService.getList().subscribe(e => console.log(e));
   }
 
   deleteClick(document_id: number) {

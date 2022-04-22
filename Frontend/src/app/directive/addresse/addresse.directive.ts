@@ -11,7 +11,7 @@ export class AddresseDirective {
   ngOnInit(){
     this._elementRef.nativeElement.value = this.address.address_id;
 
-    this._elementRef.nativeElement.innerHTML = this.address.road + " " +
+    this._elementRef.nativeElement.innerHTML += this.address.road + " " +
       this.address.number + ", " + this.address.town + "\r\n" + this.address.cp + " " + this.address.country;
   }
 }

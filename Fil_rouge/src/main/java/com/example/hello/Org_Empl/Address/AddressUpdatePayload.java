@@ -20,4 +20,7 @@ public class AddressUpdatePayload {
     private String cp;
     private String town;
     private String country;
+    private Employee employee;
+    private Organization organization;
+    private Contact contact;
 }

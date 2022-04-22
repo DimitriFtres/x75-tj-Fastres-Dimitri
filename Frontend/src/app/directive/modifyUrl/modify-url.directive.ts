@@ -12,9 +12,9 @@ export class ModifyUrlDirective {
               private _route : Router) { }
 
   ngOnInit(){
-
+    console.log(this.directory)
     let url = this._route.url;
-    let tabUrl = url.match(("\\/\\w*"));
+    let tabUrl = url.match(("\\/\\w+-?\\w+"));
     if(tabUrl != null)
     {
       this._elementRef.nativeElement.href = tabUrl[0] + "/" + this.directory;

@@ -2,7 +2,6 @@ package com.example.hello.Contact.Contact;
 
 import com.example.hello.Common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +32,7 @@ public class ContactController {
 //                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
 //                }
                 Contact contact = new Contact.Builder()
-                        .setAddress(payload.getAddress())
+                        .setAddresses(payload.getAddresses())
                         .setFirstname(payload.getFirstname())
                         .setLastname(payload.getLastname())
                         .setPhone(payload.getPhone())

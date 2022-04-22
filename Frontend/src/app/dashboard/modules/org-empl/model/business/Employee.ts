@@ -7,6 +7,6 @@ export interface Employee
   role: String;
   actif: boolean;
   account: Account;
-  address: Address;
+  addresses: Address[];
   organization: Organization;
 }
