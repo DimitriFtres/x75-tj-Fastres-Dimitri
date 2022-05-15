@@ -31,6 +31,15 @@ import {OrgEmplModifyComponent} from "@org-empl/component/org-empl-modify/org-em
 import {OrgEmplModifyOrganizationComponent} from "@org-empl/component/org-empl-modify-organization/org-empl-modify-organization.component";
 import {OrgEmplModifyEmployeeComponent} from "@org-empl/component/org-empl-modify-employee/org-empl-modify-employee.component";
 import {DisplayAddressesComponent} from "@shared/display-addresses/display-addresses.component";
+import {SignupComponent} from "./public/signup/component/signup.component";
+import {ListWalletComponent} from "@wallet/component/list-wallet/list-wallet.component";
+import {AddWalletComponent} from "@wallet/component/add-wallet/add-wallet.component";
+import {ModifyWalletComponent} from "@wallet/component/modify-wallet/modify-wallet.component";
+import {WalletHomeComponent} from "@wallet/component";
+import {ModifyDocumentComponent} from "@documents/component/modify-document/modify-document.component";
+import {ModifyTransactionComponent} from "@wallet/component/modify-transaction/modify-transaction.component";
+import {ModifySalaryComponent} from "@wallet/component/modify-salary/modify-salary.component";
+import { WalletDirective } from './directive/wallet/wallet.directive';
 
 
 
@@ -60,7 +69,16 @@ import {DisplayAddressesComponent} from "@shared/display-addresses/display-addre
         OrgEmplModifyComponent,
         OrgEmplModifyOrganizationComponent,
         OrgEmplModifyEmployeeComponent,
-        DisplayAddressesComponent
+        DisplayAddressesComponent,
+        SignupComponent,
+        ListWalletComponent,
+        AddWalletComponent,
+        ModifyWalletComponent,
+        WalletHomeComponent,
+        ModifyDocumentComponent,
+        ModifyTransactionComponent,
+        ModifySalaryComponent,
+        WalletDirective
     ],
     imports: [
         BrowserModule,
@@ -79,6 +97,7 @@ import {DisplayAddressesComponent} from "@shared/display-addresses/display-addre
     ContactHomeComponent,
     ListOrgEmplComponent,
     AddOrgEmplComponent,
+    ListWalletComponent,
   ],
     bootstrap: [AppComponent],
 })

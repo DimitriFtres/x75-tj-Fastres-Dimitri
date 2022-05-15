@@ -34,7 +34,7 @@ export class DocumentService extends ApiService {
   }
 
   getDetail(document_id: string): Observable<Document> {
-    return this.http.get(this.baseUrl+`document/${document_id}`)
+    return this.http.get(this.baseUrl+`document/detail/${document_id}`)
       .pipe(
         map((response) => {
           return response.data as Document

@@ -6,16 +6,23 @@ import {Employee, Organization} from "@org-empl/model";
 })
 export class OrganizationDirective {
 
-  @Input('appOrganization') organization!: Organization;
+  @Input('appOrganization') organization?: Organization;
 
   constructor(private _elementRef: ElementRef) { }
 
   ngOnInit(){
-    this._elementRef.nativeElement.value = this.organization.organization_id;
+    if(this.organization)
+    {
+        this._elementRef.nativeElement.value = this.organization.organization_id;
 
-    this._elementRef.nativeElement.innerHTML += this.organization.name + " " ;
-    this.organization.addresses.forEach(e => {
-      this._elementRef.nativeElement.innerHTML +=  e.road + " " + e.town + "\r\n" + e.cp + " " + e.country + " \r\n"
-    });
+        this._elementRef.nativeElement.innerHTML += this.organization.name + " " ;
+        if(this.organization.addresses)
+        {
+          this.organization.addresses.forEach(e => {
+            this._elementRef.nativeElement.innerHTML +=  e.road + " " + e.town + "\r\n" + e.cp + " " + e.country + " \r\n"
+          });
+        }
+
+    }
   }
 }

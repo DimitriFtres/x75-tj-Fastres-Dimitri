@@ -29,7 +29,7 @@ export class ListOrgEmplComponent implements OnInit {
     address.employee = {} as Employee;
     address.organization = {} as Organization;
     address.contact = {} as Contact;
-    this.addressService.update(address as AddressUpdatePayload).subscribe();
+    this.addressService.deleteAddress(address.address_id.toString()).subscribe();
   }
 
   deleteClickOrganization(organization: Organization) {

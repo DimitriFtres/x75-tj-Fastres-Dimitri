@@ -1,6 +1,8 @@
 package com.example.hello.Org_Empl.Organization;
 
 import com.example.hello.Common.ApiResponse;
+import com.example.hello.Org_Empl.Address.Address;
+import com.example.hello.Org_Empl.Address.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,8 @@ public class OrganizationController {
 
     @Autowired
     OrganizationRepository organizationRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
     @GetMapping("/list")
     public ApiResponse getList(){
@@ -29,8 +33,19 @@ public class OrganizationController {
                 .setName(payload.getName())
                 .setDescription(payload.getDescription())
                 .setActif(payload.isActif())
-                .setAddresses(payload.getAddresses()).build();
+                .build();
         Organization newOrganization = organizationRepository.save(organization);
+        payload.getAddresses().forEach(address -> {
+            Address addressUpdate = addressRepository.findById(address.getAddress_id());
+            if(addressUpdate != null)
+            {
+                Address newAddress = address;
+                newAddress.setOrganization(newOrganization);
+                Address freshAddress = addressRepository.save(newAddress);
+            }
+        });
+        newOrganization.setAddresses(payload.getAddresses());
+        organizationRepository.save(newOrganization);
         return new ApiResponse(true, newOrganization, BASE_CODE);
     }
 
@@ -50,6 +65,7 @@ public class OrganizationController {
     public ApiResponse delete(@PathVariable int id) {
         Organization organizationToDelete = organizationRepository.findById(id);
         if(organizationToDelete != null){
+            addressRepository.deleteAll(organizationToDelete.getAddresses());
             organizationRepository.deleteById(id);
             return new ApiResponse(true, null, BASE_CODE + "delete.success");
         }else{

@@ -21,9 +21,8 @@ public class Account {
     private String firstname;
     @NotNull
     private String lastname;
-    @JsonIgnore
     @OneToOne
-    @JoinColumn(name="account_id")
+    @JoinColumn(name="account_id", nullable = false)
     private Credential credential;
 
 

@@ -67,14 +67,12 @@ export class AddOrgEmplComponent implements OnInit {
     this.accountService.getList().subscribe();
   }
   submitAddress(){
-    this.addressService.create(this.formAddress.value as AddressAddPayload).subscribe();
-
-
+    this.addressService.create(this.formAddress.value as AddressAddPayload).subscribe(e =>  this.formAddress.reset());
   }
 
   submitOrganization() {
     this.formOrganization.value.addresses = this.organizationAddressses;
-    this.organizationService.create(this.formOrganization.value as OrganizationAddPayload).subscribe();
+    this.organizationService.create(this.formOrganization.value as OrganizationAddPayload).subscribe(e =>  this.formOrganization.reset());
   }
 
   submitEmployee(){
@@ -83,9 +81,10 @@ export class AddOrgEmplComponent implements OnInit {
         this.formEmployee.value.account = account;
         this.formEmployee.value.organization = organization;
         this.formEmployee.value.addresses = this.employeeAdresses;
-        this.employeeService.create(this.formEmployee.value as EmployeeAddPayload).subscribe();
+        this.employeeService.create(this.formEmployee.value as EmployeeAddPayload).subscribe(e =>  this.formEmployee.reset());
       })
-    })
+    });
+    this.addressService.getList().subscribe();
   }
 
   modifyAddress($event: Address, form: FormGroup) {

@@ -5,6 +5,7 @@ import com.example.hello.Org_Empl.Employee.Employee;
 import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
 import com.example.hello.Org_Empl.Organization.Organization;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,17 +40,17 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = true, referencedColumnName = "employee_id")
-    @JsonBackReference
+    @JsonIgnore
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = true, referencedColumnName = "organization_id")
-    @JsonBackReference
+    @JsonIgnore
     private Organization organization;
 
     @ManyToOne
     @JoinColumn(name = "contact_id", nullable = true, referencedColumnName = "contact_id")
-    @JsonBackReference
+    @JsonIgnore
     private Contact contact;
 
     public Address(AddressUpdatePayload address) {

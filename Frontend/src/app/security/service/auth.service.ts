@@ -1,33 +1,32 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {ApiResponse, ApiUriEnum} from '@shared/model';
 import {ApiService, HttpService, NavigationService} from '@shared/service';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {TokenService} from "./token.service";
-import {RefreshPayload, SigninPayload, TokenDto} from "../model";
+import {RefreshPayload, SigninPayload, SignupPayload, TokenDto} from "../model";
 import {SigninResponse} from "../model/response/signin.response";
+import {Address} from "@org-empl/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends ApiService {
-  isAuthenticated = false;
-
+  isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(public tokenService: TokenService, public http: HttpService, public navigation: NavigationService) {
     super(http);
   }
 
   signin(payload: SigninPayload): Observable<ApiResponse> {
     return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNIN}`, payload).pipe(
-      map((response: ApiResponse) => {
+      tap((response: ApiResponse) => {
         if (response.result) {
           const signinResponse: SigninResponse = response.data as SigninResponse;
           this.tokenService.saveToken(signinResponse.token.access_token);
           this.tokenService.saveRefreshToken(signinResponse.token.refresh_token);
-          this.isAuthenticated = true;
+          this.isAuthenticated$.next(true);
           this.navigation.navigateToSecure();
         }
-        return response;
       })
     )
   }
@@ -36,8 +35,8 @@ export class AuthService extends ApiService {
     return this.http.get(`${this.baseUrl}${ApiUriEnum.ME}`);
   }
 
-  signup(): Observable<ApiResponse> {
-    return of({result: true, data: null, error_code: null})
+  signup(payload: SignupPayload): Observable<ApiResponse> {
+    return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNUP}`, payload);
   }
 
   refreshToken(refresh: RefreshPayload): Observable<ApiResponse> {
@@ -47,7 +46,7 @@ export class AuthService extends ApiService {
           const tokenResponse: TokenDto = response.data as TokenDto;
           this.tokenService.saveToken(tokenResponse.access_token);
           this.tokenService.saveRefreshToken(tokenResponse.refresh_token);
-          this.isAuthenticated = true;
+          this.isAuthenticated$.next(true);
         }
         return response;
       })
@@ -56,7 +55,7 @@ export class AuthService extends ApiService {
 
   logout(): void {
     this.tokenService.signOut();
-    this.isAuthenticated = false;
+    this.isAuthenticated$.next(false);
     this.navigation.navigateToUnsecure();
   }
 }

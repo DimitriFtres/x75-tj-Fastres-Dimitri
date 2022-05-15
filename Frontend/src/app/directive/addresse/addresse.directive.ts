@@ -1,17 +1,21 @@
 import {Directive, ElementRef, Input} from '@angular/core';
 import {Address} from "@org-empl/model";
+import {isEmpty} from "rxjs/operators";
 
 @Directive({
   selector: '[appAddresse]'
 })
 export class AddresseDirective {
-  @Input('appAddresse') address!: Address;
+  @Input('appAddresse') addresses!: Address[];
   constructor(private _elementRef: ElementRef) { }
 
   ngOnInit(){
-    this._elementRef.nativeElement.value = this.address.address_id;
-
-    this._elementRef.nativeElement.innerHTML += this.address.road + " " +
-      this.address.number + ", " + this.address.town + "\r\n" + this.address.cp + " " + this.address.country;
+    if(this.addresses)
+    {
+      this.addresses.forEach(address => {
+        this._elementRef.nativeElement.innerHTML += address.road + " " +
+          address.number + ", " + address.town + "\r\n" + address.cp + " " + address.country + "\r\n / ";
+      });
+    }
   }
 }

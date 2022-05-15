@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {ContactHomeComponent} from "./component/contact-home/contact-home.component";
+import {ContactHomeComponent} from "@contact/component";
 import {ContactModifyComponent} from "@contact/component/contact-modify/contact-modify.component";
 import {ListContactComponent} from "@contact/component/list/list-contact.component";
 import {AddContactComponent} from "@contact/component/add/add-contact.component";

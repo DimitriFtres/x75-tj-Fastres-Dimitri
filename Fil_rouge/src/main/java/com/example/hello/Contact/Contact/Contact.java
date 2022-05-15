@@ -1,6 +1,7 @@
 package com.example.hello.Contact.Contact;
 
 import com.example.hello.Org_Empl.Address.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,7 @@ public class Contact {
     private String email;
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact")
-    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contact"/*, cascade = CascadeType.ALL*/)
     private List<Address> addresses;
 
     public Contact(ContactUpdatePayload contact) {
@@ -33,6 +33,10 @@ public class Contact {
         this.email = contact.getEmail();
         this.phone = contact.getPhone();
         this.addresses = contact.getAddresses();
+    }
+    @Column
+    public int getId() {
+        return contact_id;
     }
 
     public static class Builder

@@ -44,7 +44,7 @@ export class ContactModifyComponent implements OnInit {
         addresses: this.contact.addresses
       } as ContactUpdatePayload
 
-      this.contactService.update(updateContact).subscribe();
+      this.contactService.update(updateContact).subscribe(e =>  this.formContact.reset());
   }
 
   modifyAddress($event: Address) {

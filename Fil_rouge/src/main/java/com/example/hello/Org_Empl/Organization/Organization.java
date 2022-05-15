@@ -1,6 +1,7 @@
 package com.example.hello.Org_Empl.Organization;
 
 import com.example.hello.Org_Empl.Address.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,6 @@ public class Organization {
     private String description;
     private boolean actif;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
-    @JsonManagedReference
     private List<Address> addresses;
 
     public Organization(OrganizationUpdatePayload organization) {

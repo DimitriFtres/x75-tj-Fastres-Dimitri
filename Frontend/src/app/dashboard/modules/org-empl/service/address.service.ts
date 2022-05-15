@@ -79,7 +79,7 @@ export class AddressService extends ApiService{
   }
 
   update(payload: AddressUpdatePayload): Observable<Address[]> {
-    return this.http.put(this.baseUrl+'address', payload)
+    return this.http.put(this.baseUrl+'address/update', payload)
       .pipe(
         switchMap((response) => {
           if(response.result){

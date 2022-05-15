@@ -1,4 +1,4 @@
-<h1 class="h3 text-center pb-3">List des contacts</h1>
+<h1 class="h3 text-center pb-3">Liste des contacts</h1>
 
 <table class="table table-striped">
   <thead>
@@ -19,7 +19,7 @@
         <td class="col">{{contact.lastname}}</td>
         <td class="col">{{contact.email}}</td>
         <td class="col">{{contact.phone}}</td>
-        <td class="col" *ngFor="let address of contact.addresses" [appAddresse]="address"></td>
+        <td class="col" [appAddresse]="contact.addresses"></td>
         <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(contact.contact_id)">Supprimer</button></td>
         <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/'+contact.contact_id" >Modifier</a></td>
       </tr>

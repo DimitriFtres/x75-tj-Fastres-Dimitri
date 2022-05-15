@@ -16,7 +16,7 @@ export class SecurityGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // if already logged --------------------------
-    if (this.auth.isAuthenticated) {
+    if (this.auth.isAuthenticated$.getValue()) {
       return true;
     }
     // else if no token available -----------------

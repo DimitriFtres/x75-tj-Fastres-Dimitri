@@ -49,7 +49,12 @@
       <td class="col p-2">{{organization.name}}</td>
       <td class="col p-2">{{organization.description}}</td>
       <td class="col p-2">{{organization.actif}}</td>
-      <td class="col p-2" [appOrganization]="organization"></td>
+      <ng-container *ngIf="organization.addresses ; else noAddress">
+        <td class="col p-2" [appAddresse]="organization.addresses"></td>
+      </ng-container>
+      <ng-template #noAddress>
+        <td class="col p-2">Pas d'addresse</td>
+      </ng-template>
       <td class="col p-2"><button class="btn btn-danger bg-danger" (click)="deleteClickOrganization(organization)">Supprimer</button></td>
       <td class="col p-2"><a class="btn btn-primary bg-primary" [appModifyUrl]="'organization/modify/'+organization.organization_id" >Modifier</a></td>
     </tr>

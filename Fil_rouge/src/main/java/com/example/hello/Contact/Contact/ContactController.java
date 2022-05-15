@@ -1,6 +1,10 @@
 package com.example.hello.Contact.Contact;
 
 import com.example.hello.Common.ApiResponse;
+import com.example.hello.Org_Empl.Address.Address;
+import com.example.hello.Org_Empl.Address.AddressController;
+import com.example.hello.Org_Empl.Address.AddressRepository;
+import com.example.hello.Org_Empl.Address.AddressUpdatePayload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,9 @@ public class ContactController {
     @Autowired
     ContactRepository contactRepository;
 
+    @Autowired
+    AddressRepository addressRepository;
+
     @GetMapping("/list")
     public ApiResponse list(){
         return new ApiResponse(true,contactRepository.findAll(),BASE_CODE + "list.sucess");
@@ -26,20 +33,26 @@ public class ContactController {
     }
 
     @PostMapping("/create")
-    public ApiResponse create(@RequestBody ContactCreatePayload payload, HttpServletResponse response) {
+    public ApiResponse create(@RequestBody ContactCreatePayload payload) {
             try {
-//                if(orgRepository.findById(payload.getOrganisation().getId()) == null){
-//                    payload.setOrganisation(orgRepository.save(payload.getOrganisation()));
-//                }
                 Contact contact = new Contact.Builder()
-                        .setAddresses(payload.getAddresses())
                         .setFirstname(payload.getFirstname())
                         .setLastname(payload.getLastname())
                         .setPhone(payload.getPhone())
                         .setEmail(payload.getEmail())
                         .build();
                 Contact newContact = contactRepository.save(contact);
-                return new ApiResponse(true, newContact, BASE_CODE + "create.success");
+                payload.getAddresses().forEach(address -> {
+                    Address addressUpdate = addressRepository.findById(address.getAddress_id());
+                    if(addressUpdate != null) {
+                        Address newAddress = address;
+                        newAddress.setContact(newContact);
+                        Address freshAddress = addressRepository.save(newAddress);
+                    }
+                });
+                newContact.setAddresses(payload.getAddresses());
+                contactRepository.save(newContact);
+                return new ApiResponse(true, contactRepository.findAll(), BASE_CODE + "create.success");
             } catch (Exception e) {
                 e.printStackTrace();
                 return new ApiResponse(false, null, BASE_CODE + "create.error");
@@ -61,7 +74,8 @@ public class ContactController {
     @DeleteMapping("/delete/{id}")
     public ApiResponse delete(@PathVariable int id) {
         Contact contactToDelete = contactRepository.findById(id);
-    if(contactToDelete != null){
+        if(contactToDelete != null){
+            addressRepository.deleteAll(contactToDelete.getAddresses());
             contactRepository.deleteById(id);
             return new ApiResponse(true, null, BASE_CODE + "delete.success");
         }else{

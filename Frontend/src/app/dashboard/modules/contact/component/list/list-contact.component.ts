@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Contact} from "@contact/model";
 import {ContactService} from "@contact/service/contact.service";
-import {createContentChild} from "@angular/compiler/src/core";
+import {AddressService} from "@org-empl/service/address.service";
 
 @Component({
   selector: 'app-list-contact',
@@ -11,14 +11,15 @@ import {createContentChild} from "@angular/compiler/src/core";
 export class ListContactComponent implements OnInit {
 
 
-  constructor(public contactService: ContactService) { }
+  constructor(public contactService: ContactService,
+              public addressService: AddressService) { }
 
   ngOnInit(): void {
     this.contactService.getList().subscribe();
   }
 
   deleteClick(contact: number) {
-    this.contactService.deleteContact(contact.toString()).subscribe()
+    this.contactService.deleteContact(contact.toString()).subscribe();
   }
 
     modify(contact: Contact) {

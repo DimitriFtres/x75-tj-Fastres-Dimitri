@@ -19,6 +19,8 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log("hello"+ this.auth.tokenService.getToken());
     const cloneReq = this.addToken(req);
+    req.headers.set("Content-Type", "application/json");
+    req.headers.set("Accept", "application/json");
     return next.handle(cloneReq).pipe(
       catchError((err: HttpErrorResponse) => {
         return this.handleError(err, cloneReq, next)

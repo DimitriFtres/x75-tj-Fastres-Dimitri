@@ -14,10 +14,10 @@ export class NavigationService {
   }
 
   navigateToUnsecure(): void {
-    this.navigate('/account');
+    this.navigate('');
   }
 
   navigateToSecure(): void {
-    this.navigate('');
+    this.navigate('/contact/');
   }
 }

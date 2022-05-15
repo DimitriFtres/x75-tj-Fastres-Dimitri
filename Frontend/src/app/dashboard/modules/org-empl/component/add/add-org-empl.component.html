@@ -1,3 +1,4 @@
+<h1 class="text-center">Ajout d'adresse</h1>
 <form method="POST" [formGroup]="formAddress" (submit)="submitAddress()" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
     <label for="country">Pays : </label>
@@ -28,12 +29,10 @@
     <label for="type">Type : </label>
     <input type="text" id="type" [name]="'type'" formControlName="type">
   </div>
-  <button [disabled]="formAddress.invalid">Ajouter contact</button>
+  <button [disabled]="formAddress.invalid">Ajouter adresse</button>
 </form>
 
-
-
-
+<h1 class="text-center">Ajout d'organisation</h1>
 
 <form method="POST" [formGroup]="formOrganization" (submit)="submitOrganization()" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
@@ -57,11 +56,10 @@
                            (modifiedAddresses)="modifyAddress($event, formOrganization)"></app-display-addresses>
   </div>
 
-  <button [disabled]="formOrganization.invalid">Ajouter contact</button>
+  <button [disabled]="formOrganization.invalid">Ajouter organisation</button>
 </form>
 
-
-
+<h1 class="text-center">Ajout d'employé</h1>
 
 <form method="POST" [formGroup]="formEmployee" (submit)="submitEmployee()" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
@@ -106,5 +104,5 @@
     <app-display-addresses [addresses]="[]" (addAddress)="addAddress($event, formEmployee)"
                            (modifiedAddresses)="modifyAddress($event, formEmployee)"></app-display-addresses>
   </div>
-  <button [disabled]="formEmployee.invalid">Ajouter contact</button>
+  <button [disabled]="formEmployee.invalid">Ajouter employé</button>
 </form>

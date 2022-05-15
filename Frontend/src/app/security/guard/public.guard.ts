@@ -11,7 +11,7 @@ import {AuthService} from "../service/auth.service";
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (this.auth.isAuthenticated) {
+    if (this.auth.isAuthenticated$.getValue()) {
       this.auth.navigation.navigateToSecure();
       return false;
     }

@@ -3,6 +3,7 @@ package com.example.hello.Org_Empl.Employee;
 import com.example.hello.Auth.Account.Account;
 import com.example.hello.Org_Empl.Address.Address;
 import com.example.hello.Org_Empl.Organization.Organization;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,6 @@ public class Employee {
     private Account account;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
-    @JsonManagedReference
     private List<Address> addresses;
 
     @ManyToOne
