@@ -17,5 +17,4 @@ public class OrganizationCreatePayload {
     private boolean actif;
     private List<Address> addresses;
 
-
 }

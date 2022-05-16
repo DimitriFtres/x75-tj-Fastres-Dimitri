@@ -38,9 +38,7 @@ public class WalletController {
                         .setDescription(payload.getDescription())
                         .setActif(payload.isActif())
                         .setType(payload.getType())
-                        .setEmployee(payload.getEmployee())
-                        .setOrganization(payload.getOrganization())
-                        .build();
+                        .setEmployee(payload.getEmployee()).build();
                 Wallet newwallet = walletRepository.save(wallet);
                 return new ApiResponse(true, newwallet, BASE_CODE + "create.success");
             } catch (Exception e) {

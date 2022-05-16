@@ -1,7 +1,6 @@
 package com.example.hello.Auth.Account;
 
 import com.example.hello.security.entity.Credential;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,14 +14,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_id;
     @NotNull
     private String firstname;
     @NotNull
     private String lastname;
     @OneToOne
-    @JoinColumn(name="account_id", nullable = false)
+    @JoinColumn(name="account_id")
     private Credential credential;
 
 

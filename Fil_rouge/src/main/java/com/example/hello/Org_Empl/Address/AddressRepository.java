@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address,Integer> {
+  @Query("SELECT e from Address e WHERE e.contact IS NULL AND e.employee IS NULL AND e.organization IS NULL")
+  List<Address> findUnusedAddress();
   Address findById(int id);
-  @Query("SELECT e from Address e where e.employee IS NULL" +
-          " AND e.contact IS NULL " +
-          "AND e.organization IS NULL")
-  List<Address> getAddressesNotLinked();
 }

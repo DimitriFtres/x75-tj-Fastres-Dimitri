@@ -1,10 +1,9 @@
 package com.example.hello.Org_Empl.Employee;
 
 import com.example.hello.Auth.Account.Account;
+import com.example.hello.Auth.Account.AccountUpdatePayload;
 import com.example.hello.Org_Empl.Address.Address;
 import com.example.hello.Org_Empl.Organization.Organization;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employee_id;
     @NotNull
     private String role;
@@ -29,7 +28,7 @@ public class Employee {
     @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "account_id")
     private Account account;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToMany(mappedBy = "employee")
     private List<Address> addresses;
 
     @ManyToOne
@@ -79,7 +78,7 @@ public class Employee {
             return this;
         }
 
-        public Builder setAddresses(List<Address> addresses) {
+        public Builder setAddress(List<Address> address) {
             this.addresses = addresses;
             return this;
         }

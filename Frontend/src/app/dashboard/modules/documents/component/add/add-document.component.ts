@@ -7,6 +7,10 @@ import {EmployeeService} from "@org-empl/service/employee.service";
 import {OrganizationService} from "@org-empl/service/organization.service";
 import {TransactionService} from "@wallet/service/transaction.service";
 import {AccountService} from "@auth/service/account.service";
+import {HttpClient, HttpRequest} from "@angular/common/http";
+import {FileManagerService} from "@shared/service/fileManager/file-manager.service";
+import {FileManager} from "@shared/model/fileManager/fileManager";
+import {FileManagerAddPayload} from "@shared/model/fileManager/fileManagerAddPayload";
 
 
 @Component({
@@ -16,7 +20,7 @@ import {AccountService} from "@auth/service/account.service";
 })
 export class AddDocumentComponent implements OnInit {
   files?: FileList;
-  
+
   formDocument: FormGroup = new FormGroup({
     name : new FormControl('', [Validators.required]),
     description : new FormControl('', [Validators.required]),
@@ -31,7 +35,9 @@ export class AddDocumentComponent implements OnInit {
   constructor(public documentService : DocumentService,
               public employeeService : EmployeeService,
               public organizationService : OrganizationService,
-              public transactionService : TransactionService) { }
+              public transactionService : TransactionService,
+              public fileMangerService : FileManagerService,
+              public httpClient : HttpClient) { }
 
   ngOnInit(): void {
     this.documentService.getList().subscribe();
@@ -39,7 +45,9 @@ export class AddDocumentComponent implements OnInit {
     this.organizationService.getList().subscribe();
     this.transactionService.getList().subscribe();
   }
+
   submit(){
+    this.save();
     console.log(this.formDocument.value);
     this.employeeService.getDetail(this.formDocument.value.employee).subscribe(employee => {
       this.formDocument.value.employee = employee;
@@ -55,22 +63,28 @@ export class AddDocumentComponent implements OnInit {
 
   onFileChange(event: any): void {
     this.files = event.target.files;
+    this.formDocument.get('path')!.setValue(event);
   }
 
   save() {
-    const obj = {
+    let fileUpload = {
       name: 'file_' + new Date().getTime(),
       type: 'DOCX',
-      path: 'mon/super/path',
+      path: 'C:\\Users\\jimid\\IdeaProjects\\Fil Rouge\\Fil_rouge\\upload',
       deleted: false,
       file: this.files
-    }
+    } as FileManagerAddPayload
+
+    this.formDocument.get('path')!.setValue(fileUpload);
+
     const formData: FormData = new FormData();
     formData.append('file', this.files!.item(0)!);
-    const newRequest = new HttpRequest('POST', `${this.apiUrl}upload`, formData, {
+    console.log(formData.get('file'))
+    const newRequest = new HttpRequest('POST', `http://localhost:2021/api/file/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
+
     this.httpClient.request(newRequest).subscribe((data: any) => {
       console.log('data', data.body);
     })

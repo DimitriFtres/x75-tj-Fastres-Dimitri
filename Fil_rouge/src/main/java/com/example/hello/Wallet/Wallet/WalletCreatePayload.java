@@ -16,6 +16,5 @@ public class WalletCreatePayload {
     private boolean actif;
     private String type;
     private Employee employee;
-    private Organization organization;
 
 }

@@ -1,8 +1,7 @@
 package com.example.hello.Org_Empl.Organization;
 
 import com.example.hello.Org_Empl.Address.Address;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.example.hello.Org_Empl.Employee.EmployeeUpdatePayload;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,14 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 public class Organization {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int organization_id;
     @NotNull
     private String name;
     @NotNull
     private String description;
     private boolean actif;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
+    @OneToMany(mappedBy = "organization")
     private List<Address> addresses;
 
     public Organization(OrganizationUpdatePayload organization) {
@@ -32,7 +31,6 @@ public class Organization {
         this.name = organization.getName();
         this.description = organization.getDescription();
         this.addresses = organization.getAddresses();
-        this.actif = organization.isActif();
     }
 
     public static class Builder
