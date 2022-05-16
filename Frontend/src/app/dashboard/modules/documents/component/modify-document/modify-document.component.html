@@ -1,0 +1,69 @@
+<h1>{{document.name}} </h1>
+
+<form method="POST" [formGroup]="formDocument" (submit)="submit()" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="name">Nom : </label>
+    <input type="text" id="name" [name]="'name'" formControlName="name" value="{{document.name}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="description">Description : </label>
+    <input type="text" id="description" [name]="'description'" formControlName="description" value="{{document.description}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Acces libre : </p>
+    <div>
+      <input type="checkbox" id="free_access" [name]="'free_access'" formControlName="free_access" class="" value="{{document.free_access}}">
+      <label for="free_access">Oui </label>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <label for="path">Chemin : </label>
+    <input type="text" id="path" [name]="'path'" formControlName="path" value="{{document.path}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="type">Type : </label>
+    <input type="text" id="type" [name]="'type'" formControlName="type" value="{{document.type}}">
+  </div>
+  <div>
+    <div id="employee">
+      <select name="employeeSelector" id="employeeSelector" [name]="'employee'" formControlName="employee">
+        <option value="0"></option>
+        <ng-container *ngFor="let employee of employeeService.employees$ | async">
+          <option [appEmployee]="employee" *ngIf="document.employee.employee_id == employee.employee_id ; else option" selected></option>
+          <ng-template #option>
+            <option [appEmployee]="employee"></option>
+          </ng-template>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <div>
+    <div id="organization">
+      <select name="organizationSelector" id="organizationSelector" [name]="'organization'" formControlName="organization">
+        <option value="0"></option>
+        <ng-container *ngFor="let organization of organizationService.organizations$ | async">
+          <option [appOrganization]="organization" *ngIf="document.organization.organization_id == organization.organization_id ; else option" selected></option>
+          <ng-template #option>
+            <option [appOrganization]="organization"></option>
+          </ng-template>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <div>
+    <div id="transaction">
+      <select name="transactionSelector" id="transactionSelector" [name]="'transaction'" formControlName="transaction">
+        <option value="0"></option>
+        <ng-container *ngFor="let transaction of transactionService.transactions$ | async">
+          <option [appTransaction]="transaction" *ngIf="document.transaction.transaction_id == transaction.transaction_id ; else option" selected></option>
+          <ng-template #option>
+            <option [appTransaction]="transaction"></option>
+          </ng-template>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+  <button [disabled]="formDocument.invalid">Ajouter contact</button>
+</form>
+

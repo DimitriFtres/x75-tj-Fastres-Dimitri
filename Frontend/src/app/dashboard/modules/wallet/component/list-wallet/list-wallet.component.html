@@ -1,0 +1,87 @@
+<h1 class="h3 text-center pb-3">Liste des portefeuilles</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr class="row h6">
+    <td class="col">Nom</td>
+    <td class="col">Description</td>
+    <td class="col">Actif</td>
+    <td class="col">Type</td>
+    <td class="col">Employee</td>
+    <td class="col">Organisation</td>
+    <td class="col"></td>
+    <td class="col"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let wallet of walletService.wallets$ | async">
+    <tr class="row" id="{{wallet.wallet_id}}">
+      <td class="col">{{wallet.name}}</td>
+      <td class="col">{{wallet.description}}</td>
+      <td class="col">{{wallet.actif}}</td>
+      <td class="col">{{wallet.type}}</td>
+      <td class="col">{{wallet.employee.account.firstname}} {{wallet.employee.account.lastname}}</td>
+      <td class="col">{{wallet.organization.name}}</td>
+      <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(wallet.wallet_id)">Supprimer</button></td>
+      <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/wallet/'+wallet.wallet_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+<h1 class="h3 text-center pb-3">Liste des salaires</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr class="row h6">
+    <td class="col">Type</td>
+    <td class="col">Date de virement</td>
+    <td class="col">Montant</td>
+    <td class="col">Periodicité</td>
+    <td class="col">Employee</td>
+    <td class="col"></td>
+    <td class="col"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let salary of salaryService.salarys$ | async">
+    <tr class="row" id="{{salary.salary_id}}">
+      <td class="col">{{salary.type}}</td>
+      <td class="col">{{salary.billing_date}}</td>
+      <td class="col">{{salary.amount}}</td>
+      <td class="col">{{salary.periodicity}}</td>
+      <td class="col">{{salary.employee.account.firstname}} {{salary.employee.account.lastname}}</td>
+      <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClicksalary(salary.salary_id)">Supprimer</button></td>
+      <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/salary/'+salary.salary_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+
+<h1 class="h3 text-center pb-3">Liste des transactions</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr class="row h6">
+    <td class="col">Type</td>
+    <td class="col">Montant</td>
+    <td class="col">Portefeuille</td>
+    <td class="col"></td>
+    <td class="col"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let transaction of transactionService.transactions$ | async">
+    <tr class="row" id="{{transaction.transaction_id}}">
+      <td class="col">{{transaction.type}}</td>
+      <td class="col">{{transaction.amount}}</td>
+      <td class="col">{{transaction.wallet.name}}</td>
+      <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClicktransaction(transaction.transaction_id)">Supprimer</button></td>
+      <td class="col"><a class="btn btn-primary bg-primary" [appModifyUrl]="'modify/transaction/'+transaction.transaction_id" >Modifier</a></td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+

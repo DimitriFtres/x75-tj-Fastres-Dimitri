@@ -1,0 +1,59 @@
+<ng-container *ngIf="wallet">
+  <h1 class="h3 text-center pb-3">{{wallet.name}}</h1>
+
+  <form method="POST" (submit)="submit()" [formGroup]="formwallet" class="w-50 mx-auto">
+    <div class="d-flex justify-content-between">
+      <label for="name">Nom : </label>
+      <input type="text" id="name" [name]="'name'" formControlName="name">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="description">Description : </label>
+      <input type="text" id="description" [name]="'description'" formControlName="description">
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Actif : </p>
+      <div>
+        <label for="actif">Oui </label>
+        <input type="checkbox" id="actif" [name]="'actif'" formControlName="actif">
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="type">Type : </label>
+      <input type="text" id="type" [name]="'type'" formControlName="type">
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Employé : </span>
+      <div>
+        <div id="employee">
+          <select name="employeeSelector" id="employeeSelector" [name]="'employee'" formControlName="employee">
+            <option value="0"></option>
+            <ng-container *ngFor="let employee of employeeService.employees$ | async">
+              <option [appEmployee]="employee" *ngIf="employee.employee_id == wallet.employee.employee_id; else unselected" selected></option>
+              <ng-template #unselected>
+                <option [appEmployee]="employee"></option>
+              </ng-template>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Organisation : </span>
+      <div>
+        <div id="organization">
+          <select name="organizationSelector" id="organizationSelector" [name]="'organization'" formControlName="organization">
+            <option value="0"></option>
+            <ng-container *ngFor="let organization of organizationService.organizations$ | async">
+              <option [appOrganization]="organization" *ngIf="organization.organization_id == wallet.organization.organization_id; else unselectedOrganization" selected></option>
+              <ng-template #unselectedOrganization>
+                <option [appOrganization]="organization"></option>
+              </ng-template>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="formwallet.invalid">Ajouter portefeuille</button>
+  </form>
+
+</ng-container>

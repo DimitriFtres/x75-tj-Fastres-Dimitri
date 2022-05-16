@@ -1,0 +1,34 @@
+<h1>Modification de l'addresse : </h1>
+
+<form method="POST" (submit)="submit()" [formGroup]="formAddress" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="country">Pays : </label>
+    <input type="text" id="country" [name]="'country'" formControlName="country" value="{{address.country}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="town">Ville : </label>
+    <input type="text" id="town" [name]="'town'" formControlName="town" value="{{address.town}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="cp">Code Postal : </label>
+    <input type="text" id="cp" [name]="'cp'" formControlName="cp" value="{{address.cp}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="box">Boîte : </label>
+    <input type="text" id="box" [name]="'box'" formControlName="box" value="{{address.box}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="number">Numéro : </label>
+    <input type="text" id="number" [name]="'number'" formControlName="number" value="{{address.number}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="road">Rue : </label>
+    <input type="text" id="road" [name]="'road'" formControlName="road" value="{{address.road}}">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="type">Type : </label>
+    <input type="text" id="type" [name]="'type'" formControlName="type" value="{{address.type}}">
+  </div>
+
+  <button [disabled]="formAddress.invalid">Ajouter address</button>
+</form>

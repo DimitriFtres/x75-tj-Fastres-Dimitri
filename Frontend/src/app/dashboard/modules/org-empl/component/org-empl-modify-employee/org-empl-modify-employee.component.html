@@ -1,0 +1,53 @@
+<ng-container *ngIf="employee">
+  <h1 class="text-center">{{employee.account.lastname}} {{employee.account.firstname}}</h1>
+
+  <form method="POST" [formGroup]="formEmployee" (submit)="submit()" class="w-50 mx-auto">
+    <div class="d-flex justify-content-between">
+      <label for="role">Role : </label>
+      <input type="text" id="role" [name]="'role'" formControlName="role" value="{{employee.role}}">
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Actif : </p>
+      <div>
+        <input type="checkbox" id="actifE" [name]="'actif'" formControlName="actif" class="" value="{{employee.actif}}">
+        <label for="actifE">Actif </label>
+      </div>
+    </div>
+  <!--  je décide qu'un compte ne peut pas etre changé apres que l'employé soit créer-->
+    <div>
+      <div class="d-flex justify-content-between">
+        <p>Organisation : </p>
+        <select name="organizationSelector" id="organizationSelector" [name]="'organization'" formControlName="organization">
+          <option value="0"></option>
+          <ng-container *ngFor="let organization of organizationService.organizations$ | async">
+            <p>{{organization}}</p>
+            <option [appOrganization]="organization" *ngIf="employee.organization.organization_id == organization.organization_id ; else option" selected></option>
+            <ng-template #option>
+              <option [appOrganization]="organization"></option>
+            </ng-template>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span for="address">Adresses : </span>
+      <app-display-addresses [addresses]="employee.addresses" (modifiedAddresses)="modifyAddress($event)" (addAddress)="addAddress($event)"></app-display-addresses>
+    </div>
+    <button [disabled]="formEmployee.invalid">Ajouter contact</button>
+  </form>
+
+
+  <!--    <div>-->
+  <!--      <div id="addresses">-->
+  <!--        <select name="addressSelector" id="addressSelector" [name]="'address'" formControlName="address">-->
+  <!--          <option value="0"></option>-->
+  <!--          <ng-container *ngFor="let address of addressService.addresses$ | async">-->
+  <!--            <option [appAddresse]="address" *ngIf="contact.addresses.indexOf(address) != -1 ; else option" selected></option>-->
+  <!--            <ng-template #option>-->
+  <!--              <option [appAddresse]="address"></option>-->
+  <!--            </ng-template>-->
+  <!--          </ng-container>-->
+  <!--        </select>-->
+  <!--      </div>-->
+  <!--    </div>-->
+</ng-container>

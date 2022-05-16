@@ -1,0 +1,31 @@
+<ng-container *ngIf="transaction">
+  <h1 class="h3 text-center pb-3">Modification de transaction</h1>
+
+  <form method="POST" (submit)="submit()" [formGroup]="formtransaction" class="w-50 mx-auto">
+    <div class="d-flex justify-content-between">
+      <label for="type3">Type : </label>
+      <input type="text" id="type3" [name]="'type'" formControlName="type">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="amount2">Montant : </label>
+      <input type="text" id="amount2" [name]="'amount'" formControlName="amount">
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Portefeuille : </span>
+      <div>
+        <div id="wallet">
+          <select name="walletSelector" id="walletSelector" [name]="'wallet'" formControlName="wallet">
+            <option value="0"></option>
+            <ng-container *ngFor="let wallet of walletService.wallets$ | async">
+              <option [appWallet]="wallet" *ngIf="wallet.wallet_id == transaction.wallet.wallet_id; else unselected" selected></option>
+              <ng-template #unselected>
+                <option [appWallet]="wallet"></option>
+              </ng-template>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="formtransaction.invalid">Ajouter transaction</button>
+  </form>
+</ng-container>

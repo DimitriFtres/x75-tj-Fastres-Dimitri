@@ -1,0 +1,39 @@
+<ng-container *ngIf="salary">
+  <h1 class="h3 text-center pb-3">Ajout de salaire</h1>
+
+  <form method="POST" (submit)="submit()" [formGroup]="formsalary" class="w-50 mx-auto">
+    <div class="d-flex justify-content-between">
+      <label for="type2">Type : </label>
+      <input type="text" id="type2" [name]="'type'" formControlName="type">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="billing_date">Date de virement : </label>
+      <input type="date" id="billing_date" [name]="'billing_date'" formControlName="billing_date">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="amount">Montant : </label>
+      <input type="text" id="amount" [name]="'amount'" formControlName="amount">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="periodicity">Périodicité : </label>
+      <input type="text" id="periodicity" [name]="'periodicity'" formControlName="periodicity">
+    </div>
+    <div class="d-flex justify-content-between">
+      <span>Employé : </span>
+      <div>
+        <div id="employee">
+          <select name="employeeSelector" id="employeeSelector" [name]="'employee'" formControlName="employee">
+            <option value="0"></option>
+            <ng-container *ngFor="let employee of employeeService.employees$ | async">
+              <option [appEmployee]="employee" *ngIf="employee.employee_id == salary.employee.employee_id; else unselected" selected></option>
+              <ng-template #unselected>
+                <option [appEmployee]="employee"></option>
+              </ng-template>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="formsalary.invalid">Ajouter salaire</button>
+  </form>
+</ng-container>

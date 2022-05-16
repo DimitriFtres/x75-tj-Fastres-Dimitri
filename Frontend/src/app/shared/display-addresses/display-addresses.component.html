@@ -1,0 +1,23 @@
+
+<table class="table table-striped">
+  <thead></thead>
+  <tbody>
+  <ng-container *ngFor="let address of addresses">
+    <tr class="row" id="{{address.address_id}}">
+      <td class="col" [appAddresse]="[address]"></td>
+      <td class="col"><button class="btn btn-danger bg-danger" (click)="deleteClick(address)">Supprimer</button></td>
+    </tr>
+  </ng-container>
+  <tr>
+      <td class="col">
+        <form action="" [formGroup]="formAdd" (submit)="addClick()" class="d-flex justify-content-between">
+          <select name="address" id="address" [name]="'address'" formControlName="address">
+            <option *ngFor="let address of addressService.addresses$ | async" value="{{address.address_id}}" [appAddresse]="[address]"></option>
+          </select>
+          <button class="btn btn-primary">Ajouter</button>
+        </form>
+    </td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

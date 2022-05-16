@@ -1,0 +1,112 @@
+<h1 class="h3 text-center pb-3">Ajout de portefeuille</h1>
+
+<form method="POST" (submit)="submitWallet()" [formGroup]="formwallet" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="name">Nom : </label>
+    <input type="text" id="name" [name]="'name'" formControlName="name">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="description">Description : </label>
+    <input type="text" id="description" [name]="'description'" formControlName="description">
+  </div>
+  <div class="d-flex justify-content-between">
+    <p>Actif : </p>
+    <div>
+      <label for="actif">Oui </label>
+      <input type="checkbox" id="actif" [name]="'actif'" formControlName="actif">
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="type">Type : </label>
+    <input type="text" id="type" [name]="'type'" formControlName="type">
+  </div>
+  <div class="d-flex justify-content-between">
+    <span>Employé : </span>
+    <div>
+      <div id="employee">
+        <select name="employeeSelector" id="employeeSelector" [name]="'employee'" formControlName="employee">
+          <option value="0"></option>
+          <ng-container *ngFor="let employee of employeeService.employees$ | async">
+            <option [appEmployee]="employee"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <span>Organisation : </span>
+    <div>
+      <div id="organization">
+        <select name="organizationSelector" id="organizationSelector" [name]="'organization'" formControlName="organization">
+          <option value="0"></option>
+          <ng-container *ngFor="let organization of organizationService.organizations$ | async">
+            <option [appOrganization]="organization"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="formwallet.invalid">Ajouter portefeuille</button>
+</form>
+
+<h1 class="h3 text-center pb-3">Ajout de salaire</h1>
+
+<form method="POST" (submit)="submitSalary()" [formGroup]="formsalary" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="type2">Type : </label>
+    <input type="text" id="type2" [name]="'type'" formControlName="type">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="billing_date">Date de virement : </label>
+    <input type="date" id="billing_date" [name]="'billing_date'" formControlName="billing_date">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="amount">Montant : </label>
+    <input type="text" id="amount" [name]="'amount'" formControlName="amount">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="periodicity">Périodicité : </label>
+    <input type="text" id="periodicity" [name]="'periodicity'" formControlName="periodicity">
+  </div>
+  <div class="d-flex justify-content-between">
+    <span>Employé : </span>
+    <div>
+      <div id="employeeS">
+        <select name="employeeSelector" id="employeeSelectorS" [name]="'employee'" formControlName="employee">
+          <option value="0"></option>
+          <ng-container *ngFor="let employee of employeeService.employees$ | async">
+            <option [appEmployee]="employee"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="formsalary.invalid">Ajouter salaire</button>
+</form>
+
+<h1 class="h3 text-center pb-3">Ajout de transaction</h1>
+
+<form method="POST" (submit)="submitTransaction()" [formGroup]="formtransaction" class="w-50 mx-auto">
+  <div class="d-flex justify-content-between">
+    <label for="type3">Type : </label>
+    <input type="text" id="type3" [name]="'type3'" formControlName="type">
+  </div>
+  <div class="d-flex justify-content-between">
+    <label for="amount2">Montant : </label>
+    <input type="text" id="amount2" [name]="'amount2'" formControlName="amount">
+  </div>
+  <div class="d-flex justify-content-between">
+    <span>Portefeuille : </span>
+    <div>
+      <div id="wallet">
+        <select name="walletSelector" id="walletSelector" [name]="'wallet'" formControlName="wallet">
+          <option value="0"></option>
+          <ng-container *ngFor="let wallet of walletService.wallets$ | async">
+            <option [appWallet]="wallet"></option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="formtransaction.invalid">Ajouter transaction</button>
+</form>

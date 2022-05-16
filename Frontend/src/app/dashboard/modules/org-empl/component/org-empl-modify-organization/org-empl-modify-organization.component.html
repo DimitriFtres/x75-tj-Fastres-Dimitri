@@ -1,0 +1,27 @@
+<ng-container *ngIf="organization">
+  <h1>{{organization.name}}</h1>
+
+  <form [formGroup]="formOrganization" (submit)="submit()" class="w-50 mx-auto">
+    <div class="d-flex justify-content-between">
+      <label for="name">Nom : </label>
+      <input type="text" id="name" [name]="'name'" formControlName="name" value="{{organization.name}}">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label for="description">Description : </label>
+      <input type="text" id="description" [name]="'description'" formControlName="description" value="{{organization.description}}">
+    </div>
+    <div class="d-flex justify-content-between">
+      <p>Actif : </p>
+      <div>
+        <input type="checkbox" id="actif" [name]="'actif'" formControlName="actif" class="" value="{{organization.actif}}">
+        <label for="actif">Actif </label>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span for="address">Adresses : </span>
+      <app-display-addresses [addresses]="organization.addresses" (modifiedAddresses)="modifyAddress($event)" (addAddress)="addAddress($event)"></app-display-addresses>
+    </div>
+      <button [disabled]="formOrganization.invalid">Ajouter contact</button>
+  </form>
+
+</ng-container>
