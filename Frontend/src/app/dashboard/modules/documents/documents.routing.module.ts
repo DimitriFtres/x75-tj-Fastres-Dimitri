@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {DocumentsHomeComponent} from "./component/documents-home/documents-home.component";
 import {RouterComponent} from "../../../../../../MyFirstApp/src/app/dashboard/router/router.component";
 import {ModifyDocumentComponent} from "@documents/component/modify-document/modify-document.component";
+import {ListDocumentComponent} from "@documents/component/list/list-document.component";
 
 let routes:Routes = [
   {
@@ -20,6 +21,11 @@ let routes:Routes = [
   {
     path: "modify/:id",
     component: ModifyDocumentComponent,
+    pathMatch: "full"
+  },
+  {
+    path: "list",
+    component: ListDocumentComponent,
     pathMatch: "full"
   }
 ];

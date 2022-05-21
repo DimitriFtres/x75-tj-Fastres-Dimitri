@@ -18,7 +18,7 @@ export class AddWalletComponent implements OnInit {
     name : new FormControl('', [Validators.required]),
     description : new FormControl('', [Validators.required]),
     actif : new FormControl('', []),
-    type : new FormControl('', []),
+    type : new FormControl('', [Validators.required]),
     employee : new FormControl('', []),
     organization : new FormControl('', []),
   });
@@ -28,7 +28,7 @@ export class AddWalletComponent implements OnInit {
     billing_date : new FormControl('', [Validators.required]),
     amount : new FormControl('', [Validators.required]),
     periodicity : new FormControl('', [Validators.required]),
-    employee : new FormControl('', []),
+    employee : new FormControl('', [Validators.required]),
 
   });
 

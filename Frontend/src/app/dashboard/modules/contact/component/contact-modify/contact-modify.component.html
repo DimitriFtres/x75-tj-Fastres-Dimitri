@@ -1,4 +1,4 @@
-<h1>{{contact.lastname}} {{contact.firstname}}</h1>
+<h1 class="text-center">{{contact.lastname}} {{contact.firstname}}</h1>
 
 <form method="POST" (submit)="submit()" [formGroup]="formContact" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
@@ -34,7 +34,7 @@
 <!--      </div>-->
 <!--    </div>-->
   </div>
-  <button [disabled]="formContact.invalid">Ajouter contact</button>
+  <button [disabled]="formContact.invalid">Modifier le contact</button>
 </form>
 
 

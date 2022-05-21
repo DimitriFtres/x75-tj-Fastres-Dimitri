@@ -13,7 +13,7 @@ import {map} from "rxjs/operators";
 export class AuthHomeComponent implements OnInit {
   formAuth = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   constructor(private authService: AuthService) {
@@ -23,7 +23,8 @@ export class AuthHomeComponent implements OnInit {
   }
 
   submit(){
-    this.authService.signin(this.formAuth.value as SigninPayload).forEach(e => console.log(e.data))
+    this.authService.signin(this.formAuth.value as SigninPayload).forEach(e => console.log(e))
     this.authService.signin(this.formAuth.value as SigninPayload);
   }
 }
+

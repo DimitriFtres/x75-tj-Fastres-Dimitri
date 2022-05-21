@@ -11,8 +11,16 @@
       <label for="password" class="d-block">Mot de passe :</label>
       <input type="password" id="password" [name]="'password'" formControlName="password">
     </div>
+    <div class="">
+      <label for="firstname" class="d-block">Prénom :</label>
+      <input type="text" id="firstname" [name]="'firstname'" formControlName="firstname">
+    </div>
+    <div class="">
+      <label for="lastname" class="d-block">Nom :</label>
+      <input type="text" id="lastname" [name]="'lastname'" formControlName="lastname">
+    </div>
     <div class="d-flex justify-content-center mt-3">
-      <button class="btn btn-warning" [disabled]="formSignUp.invalid" type="submit">Connexion</button>
+      <button class="btn btn-warning" [disabled]="formSignUp.invalid" type="submit">S'inscrire</button>
     </div>
   </form>
 </section>

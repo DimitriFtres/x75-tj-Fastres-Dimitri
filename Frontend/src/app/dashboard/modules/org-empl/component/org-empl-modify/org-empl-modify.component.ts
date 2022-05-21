@@ -16,7 +16,7 @@ export class OrgEmplModifyComponent implements OnInit {
   address: Address = {} as Address;
 
   formAddress: FormGroup = new FormGroup({
-    type : new FormControl('', []),
+    type : new FormControl('', [Validators.required]),
     road : new FormControl('', [Validators.required]),
     number : new FormControl('', [Validators.required]),
     box : new FormControl('', [Validators.required]),

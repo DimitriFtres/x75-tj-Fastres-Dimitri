@@ -7,6 +7,7 @@ import {TokenService} from "./token.service";
 import {RefreshPayload, SigninPayload, SignupPayload, TokenDto} from "../model";
 import {SigninResponse} from "../model/response/signin.response";
 import {Address} from "@org-empl/model";
+import {Credential} from "@auth/model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService extends ApiService {
     super(http);
   }
 
-  signin(payload: SigninPayload): Observable<ApiResponse> {
+  signin(payload: SigninPayload): Observable<Credential> {
     return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNIN}`, payload).pipe(
       tap((response: ApiResponse) => {
         if (response.result) {
@@ -27,16 +28,48 @@ export class AuthService extends ApiService {
           this.isAuthenticated$.next(true);
           this.navigation.navigateToSecure();
         }
-      })
+      }),
+      map(response => {
+        if(response.result)
+        {
+          return response.data as Credential;
+        }
+        else
+        {
+          return {} as Credential;
+        }
+      }),
     )
   }
 
-  me(): Observable<ApiResponse> {
-    return this.http.get(`${this.baseUrl}${ApiUriEnum.ME}`);
+  me(): Observable<Credential> {
+    return this.http.get(`${this.baseUrl}${ApiUriEnum.ME}`).pipe(
+      map(response => {
+        if(response.result)
+        {
+          return response.data as Credential;
+        }
+        else
+        {
+          return {} as Credential;
+        }
+      })
+    );
   }
 
-  signup(payload: SignupPayload): Observable<ApiResponse> {
-    return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNUP}`, payload);
+  signup(payload: SignupPayload): Observable<Credential> {
+    return this.http.post(`${this.baseUrl}${ApiUriEnum.SIGNUP}`, payload).pipe(
+      map(response => {
+        if(response.result)
+        {
+          return response.data as Credential;
+        }
+        else
+        {
+          return {} as Credential;
+        }
+      })
+    );
   }
 
   refreshToken(refresh: RefreshPayload): Observable<ApiResponse> {

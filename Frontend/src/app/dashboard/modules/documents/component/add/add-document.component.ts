@@ -27,9 +27,9 @@ export class AddDocumentComponent implements OnInit {
     free_access : new FormControl('', [Validators.required]),
     path : new FormControl('', [Validators.required]),
     type : new FormControl('', [Validators.required]),
-    employee : new FormControl('', ),
-    organization : new FormControl('', ),
-    transaction : new FormControl('', )
+    employee : new FormControl('', [Validators.required]),
+    organization : new FormControl('', [Validators.required]),
+    transaction : new FormControl('', [Validators.required])
   });
 
   constructor(public documentService : DocumentService,

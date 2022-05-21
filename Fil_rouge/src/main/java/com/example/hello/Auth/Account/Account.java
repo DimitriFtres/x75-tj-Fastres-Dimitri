@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -20,6 +21,7 @@ public class Account {
     private String firstname;
     @NotNull
     private String lastname;
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name="account_id")
     private Credential credential;

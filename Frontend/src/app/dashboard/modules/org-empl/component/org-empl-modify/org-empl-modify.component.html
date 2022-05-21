@@ -1,4 +1,4 @@
-<h1>Modification de l'addresse : </h1>
+<h1 class="text-center">Modification de l'addresse : </h1>
 
 <form method="POST" (submit)="submit()" [formGroup]="formAddress" class="w-50 mx-auto">
   <div class="d-flex justify-content-between">
@@ -30,5 +30,5 @@
     <input type="text" id="type" [name]="'type'" formControlName="type" value="{{address.type}}">
   </div>
 
-  <button [disabled]="formAddress.invalid">Ajouter address</button>
+  <button [disabled]="formAddress.invalid">Ajouter addresse</button>
 </form>

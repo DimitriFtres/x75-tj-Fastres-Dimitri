@@ -22,8 +22,7 @@ export class EmployeeDirective {
           this._elementRef.nativeElement.innerHTML +=  e.road + " " + e.town + "\r\n" + e.cp + " " + e.country + " \r\n"
         });
       }
-      this._elementRef.nativeElement.innerHTML += "\r\n" + this.employee.role + " " + this.employee.organization.name + " "
-          + this.employee.actif + ". \r\n";
+      this._elementRef.nativeElement.innerHTML += "\r\n" + this.employee.role + " " + this.employee.organization.name + ". \r\n";
     }
 
   }

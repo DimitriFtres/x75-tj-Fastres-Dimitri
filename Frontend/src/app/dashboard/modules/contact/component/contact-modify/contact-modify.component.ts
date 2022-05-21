@@ -18,7 +18,7 @@ export class ContactModifyComponent implements OnInit {
   formContact: FormGroup = new FormGroup({
     firstname : new FormControl('', [Validators.required]),
     lastname : new FormControl('', [Validators.required]),
-    email : new FormControl('', [Validators.required]),
+    email : new FormControl('', [Validators.required, Validators.email]),
     phone : new FormControl('', [Validators.required]),
   });
 
